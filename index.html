@@ -11,7 +11,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{h
-  --navy:#0b1929;--navy-mid:#0f2035;--navy-card:#132640;--navy-border:#1c3558;
+  --navy:#060e18;--navy-mid:#0a1a2e;--navy-card:#0d1f36;--navy-border:#163050;
   --gold:#c9a227;--gold-light:#ddb84a;--gold-glow:#e8c96a;--gold-pale:#f5e9c4;
   --cream:#f0e8d4;--text-primary:#eee8d8;--text-secondary:#94a8c2;--text-muted:#4e647e;
   --green:#27b87d;--red:#e04545;--blue:#4a8fe8;--orange:#e07830;--purple:#8b6fe8;--teal:#2db8b8;
@@ -35,6 +35,10 @@ html,body{height:100%;font-family:'Jost',sans-serif;background:var(--navy);color
 .btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);font-weight:700;font-size:14px;letter-spacing:0.8px;border:none;border-radius:10px;cursor:pointer;font-family:'Jost',sans-serif;margin-top:28px;transition:all .2s;text-transform:uppercase}
 .btn-login:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold-glow));transform:translateY(-1px)}
 .lc-hint{font-size:11px;color:var(--text-muted);text-align:center;margin-top:18px}
+.status-select{font-size:11px;font-weight:600;padding:2px 8px 2px 6px;border-radius:20px;letter-spacing:0.3px;cursor:pointer;outline:none;border:1px solid;-webkit-appearance:none;appearance:none;background-repeat:no-repeat;background-position:right 6px center;padding-right:20px;transition:all .2s}
+.status-select.s-ok{background-color:rgba(39,184,125,0.15);color:#27b87d;border-color:rgba(39,184,125,0.35)}
+.status-select.s-pend{background-color:rgba(139,111,232,0.15);color:#8b6fe8;border-color:rgba(139,111,232,0.35)}
+.status-select.s-canc{background-color:rgba(224,69,69,0.15);color:#e04545;border-color:rgba(224,69,69,0.35)}
 .lc-pass-wrap{position:relative}
 .lc-pass-wrap .lc-input{padding-right:42px}
 .lc-eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0;display:flex;align-items:center;justify-content:center;transition:color .2s}
@@ -487,7 +491,7 @@ textarea.fi{resize:vertical;min-height:80px}
             <div class="ib-row"><div class="ib-label">Passageiros</div><div class="ib-val">4 pax</div></div>
             <div class="ib-row"><div class="ib-label">Partida</div><div class="ib-val highlight">06 de Julho de 2025</div></div>
             <div class="ib-row"><div class="ib-label">Classe</div><div class="ib-val">Economy</div></div>
-            <div class="ib-row"><div class="ib-label">Status Ida</div><div class="ib-val"><span class="tag t-ativo">✓ EMITIDA — TAP Miles&Go</span></div></div>
+            <div class="ib-row"><div class="ib-label">Status Ida</div><div class="ib-val"><select class="status-select s-ok" id="sel-status-ida" onchange="updateStatusIda(this)"><option value="ok" selected>✓ Deu Certo</option><option value="pend">⏳ Pendente</option><option value="canc">✕ Cancelado</option></select></div></div>
             <div class="ib-row"><div class="ib-label">Milhas Usadas (ida)</div><div class="ib-val highlight">198.750 milhas</div></div>
             <div class="ib-row"><div class="ib-label">Custo em R$</div><div class="ib-val">R$1.393,28</div></div>
             <div class="ib-row"><div class="ib-label">Pagamento</div><div class="ib-val">10x s/ juros · Visa Porto final 6312</div></div>
@@ -777,6 +781,13 @@ function togglePassword(){
     input.type = 'password';
     icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>';
   }
+}
+
+function updateStatusIda(sel){
+  var v = sel.value;
+  sel.className = 'status-select ' + (v==='ok'?'s-ok':v==='pend'?'s-pend':'s-canc');
+  var label = {ok:'✓ Deu Certo',pend:'⏳ Pendente',canc:'✕ Cancelado'}[v]||v;
+  showToast('Status atualizado: ' + label, true);
 }
 
 function initLoginScreen(){
