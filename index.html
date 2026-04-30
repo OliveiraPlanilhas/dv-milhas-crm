@@ -35,6 +35,20 @@ html,body{height:100%;font-family:'Jost',sans-serif;background:var(--navy);color
 .btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);font-weight:700;font-size:14px;letter-spacing:0.8px;border:none;border-radius:10px;cursor:pointer;font-family:'Jost',sans-serif;margin-top:28px;transition:all .2s;text-transform:uppercase}
 .btn-login:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold-glow));transform:translateY(-1px)}
 .lc-hint{font-size:11px;color:var(--text-muted);text-align:center;margin-top:18px}
+.linked-op-box{background:rgba(201,162,39,0.06);border:1px solid rgba(201,162,39,0.2);border-radius:8px;padding:10px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:4px}
+.linked-op-text{flex:1;min-width:0}
+.linked-op-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.linked-op-name{font-size:12px;color:var(--text-primary);font-weight:500;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linked-op-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
+.btn-trocar{background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.3);color:var(--gold-light);font-size:11px;font-weight:600;padding:5px 11px;border-radius:6px;cursor:pointer;white-space:nowrap;font-family:'Jost',sans-serif;transition:all .2s;flex-shrink:0}
+.btn-trocar:hover{background:rgba(201,162,39,0.22)}
+.op-pick-list{display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto}
+.op-pick-item{background:rgba(255,255,255,0.03);border:1px solid var(--navy-border);border-radius:8px;padding:10px 14px;cursor:pointer;transition:all .18s}
+.op-pick-item:hover{border-color:rgba(201,162,39,0.4);background:rgba(201,162,39,0.06)}
+.op-pick-item.selected{border-color:rgba(39,184,125,0.5);background:rgba(39,184,125,0.07)}
+.op-pick-date{font-size:10px;color:var(--text-muted);margin-bottom:3px}
+.op-pick-name{font-size:12px;color:var(--text-primary);font-weight:500;line-height:1.4}
+.op-pick-obs{font-size:11px;color:var(--text-muted);margin-top:3px;line-height:1.4}
 .status-select{font-size:11px;font-weight:600;padding:2px 8px 2px 6px;border-radius:20px;letter-spacing:0.3px;cursor:pointer;outline:none;border:1px solid;-webkit-appearance:none;appearance:none;background-repeat:no-repeat;background-position:right 6px center;padding-right:20px;transition:all .2s}
 .status-select.s-ok{background-color:rgba(39,184,125,0.15);color:#27b87d;border-color:rgba(39,184,125,0.35)}
 .status-select.s-pend{background-color:rgba(139,111,232,0.15);color:#8b6fe8;border-color:rgba(139,111,232,0.35)}
@@ -496,6 +510,16 @@ textarea.fi{resize:vertical;min-height:80px}
             <div class="ib-row"><div class="ib-label">Custo em R$</div><div class="ib-val">R$1.393,28</div></div>
             <div class="ib-row"><div class="ib-label">Pagamento</div><div class="ib-val">10x s/ juros · Visa Porto final 6312</div></div>
           </div>
+        <div id="linked-op-container" style="margin-top:14px;padding:0 0 2px 0">
+          <div class="linked-op-label" style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">✈ Lançamento Vinculado (Emissão Ida)</div>
+          <div class="linked-op-box">
+            <div class="linked-op-text">
+              <div class="linked-op-name" id="linked-op-name">—</div>
+              <div class="linked-op-meta" id="linked-op-meta">—</div>
+            </div>
+            <button class="btn-trocar" onclick="openSelectOpModal()">✎ Trocar</button>
+          </div>
+        </div>
         </div>
         <div class="panel">
           <div class="panel-title">📋 Histórico de Operações para esta Viagem</div>
@@ -1223,6 +1247,60 @@ function renderEuropa(){
       <td>${o.por}</td>
       <td style="font-size:12px;color:var(--text-muted)">${o.obs}</td>
     </tr>`).join('');
+  renderLinkedOp();
+}
+
+// ======= LANCAMENTO VINCULADO (EMISSAO IDA) =======
+// Indice do OPS vinculado como lancamento da emissao ida (padrao: "Emitidas 3 passagens NAT X VIE")
+window._europaOpIdx = (function(){
+  var idx = OPS.findIndex(function(o){ return o.op.indexOf('Emitidas 3 passagens NAT') >= 0; });
+  return idx >= 0 ? idx : 1;
+})();
+
+function renderLinkedOp(){
+  var nameEl = document.getElementById('linked-op-name');
+  var metaEl = document.getElementById('linked-op-meta');
+  if(!nameEl) return;
+  var idx = window._europaOpIdx;
+  if(idx >= 0 && idx < OPS.length){
+    var o = OPS[idx];
+    nameEl.textContent = o.op;
+    var resLabel = o.res === 'deu certo' ? '✓ Deu Certo' : o.res === 'pendente' ? '⏳ Pendente' : o.res || '—';
+    metaEl.innerHTML = o.data + ' · ' + o.por + ' · <strong style="color:' + (o.res==='deu certo'?'#27b87d':o.res==='pendente'?'#8b6fe8':'#e04545') + '">' + resLabel + '</strong>';
+    // Atualizar KPI card do dashboard
+    var kpiSub = document.querySelector('#view-dash .kpi:nth-child(3) .kpi-sub span');
+    if(kpiSub) kpiSub.textContent = '✓ ' + o.op.substring(0, 28) + (o.op.length > 28 ? '…' : '');
+  } else {
+    nameEl.textContent = '— Nenhum vinculado';
+    metaEl.textContent = 'Clique em Trocar para vincular um lançamento';
+  }
+}
+
+function openSelectOpModal(){
+  var currentIdx = window._europaOpIdx;
+  var listHtml = OPS.map(function(o, i){
+    var isSel = i === currentIdx;
+    var resColor = o.res==='deu certo'?'#27b87d':o.res==='pendente'?'#8b6fe8':'#e04545';
+    var resLabel = o.res==='deu certo'?'✓ Deu Certo':o.res==='pendente'?'⏳ Pendente':o.res||'—';
+    return '<div class="op-pick-item' + (isSel?' selected':'') + '" onclick="selectLinkedOp('+i+')">' +
+      '<div class="op-pick-date">' + o.data + ' · ' + o.por +
+      ' · <span style="color:' + resColor + ';font-weight:600">' + resLabel + '</span></div>' +
+      '<div class="op-pick-name">' + o.op + '</div>' +
+      (o.obs && o.obs !== '—' ? '<div class="op-pick-obs">' + o.obs.substring(0,100) + (o.obs.length>100?'…':'') + '</div>' : '') +
+      '</div>';
+  }).join('');
+  var tabs = [{label:'Selecionar Lançamento', content:
+    '<div style="margin-bottom:10px;font-size:12px;color:var(--text-muted)">Escolha qual operação do extrato representa a emissão da ida:</div>' +
+    '<div class="op-pick-list">' + listHtml + '</div>'
+  }];
+  openMo('Trocar Lançamento Vinculado', tabs, '');
+}
+
+function selectLinkedOp(idx){
+  window._europaOpIdx = idx;
+  renderLinkedOp();
+  closeMoDirect();
+  showToast('Lançamento vinculado atualizado!', true);
 }
 
 // ======= GLOBAL SEARCH =======
