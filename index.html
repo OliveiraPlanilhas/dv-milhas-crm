@@ -2,369 +2,77 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#060e18">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="DV Milhas">
-<meta name="mobile-web-app-capable" content="yes">
-<title>CRM · DV Milhas Gestão</title>
+<title>CRM · DV Milhas Gestao</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy:#060e18;--navy-mid:#0a1a2e;--navy-card:#0d1f36;--navy-border:#163050;
-  --gold:#c9a227;--gold-light:#ddb84a;--gold-glow:#e8c96a;--gold-pale:#f5e9c4;
-  --cream:#f0e8d4;--text-primary:#eee8d8;--text-secondary:#94a8c2;--text-muted:#4e647e;
-  --green:#27b87d;--red:#e04545;--blue:#4a8fe8;--orange:#e07830;--purple:#8b6fe8;--teal:#2db6c4;
-  --sidebar-w:280px;
-}
+:root{--navy:#060e18;--navy-mid:#0a1a2e;--navy-card:#0d1f36;--navy-border:#163050;--gold:#c9a227;--gold-light:#ddb84a;--gold-glow:#e8c96a;--gold-pale:#f5e9c4;--cream:#f0e8d4;--text-primary:#eee8d8;--text-secondary:#94a8c2;--text-muted:#4e647e;--green:#27b87d;--red:#e04545;--blue:#4a8fe8;--orange:#e07830;--purple:#8b6fe8;--teal:#2db6c4;--sidebar-w:280px}
 html,body{height:100%;font-family:'Inter',sans-serif;background:var(--navy);color:var(--text-primary)}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--navy-border);border-radius:4px}
-
-/* ===== LOGIN ===== */
-#loginScreen{
-  position:fixed;inset:0;background:radial-gradient(ellipse at center,#0d1f36 0%,#060e18 70%);
-  display:flex;align-items:center;justify-content:center;z-index:9999
-}
-.login-card{
-  background:var(--navy-card);border:1px solid var(--navy-border);border-radius:20px;
-  padding:40px 36px;width:min(400px,95vw);box-shadow:0 20px 60px rgba(0,0,0,.6)
-}
-.login-logo{text-align:center;margin-bottom:24px}
-.login-logo-img{width:80px;height:80px;border-radius:16px;object-fit:cover}
-.login-logo h1{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-top:8px;letter-spacing:.5px}
-.login-logo p{font-size:11px;letter-spacing:3px;color:var(--text-muted);text-transform:uppercase;margin-top:4px}
-.login-field{margin-bottom:18px}
-.login-field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
-.login-field input{
-  width:100%;padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid var(--navy-border);
-  border-radius:10px;color:var(--text-primary);font-size:14px;outline:none;
-  transition:border .2s
-}
-.login-field input:focus{border-color:var(--gold)}
-.pw-wrap{position:relative}
-.pw-toggle{
-  position:absolute;right:12px;top:50%;transform:translateY(-50%);
-  background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;padding:4px
-}
-.login-btn{
-  width:100%;padding:14px;background:var(--gold);border:none;border-radius:10px;
-  color:#000;font-weight:700;font-size:14px;letter-spacing:1px;cursor:pointer;
-  text-transform:uppercase;transition:background .2s;margin-top:8px
-}
-.login-btn:hover{background:var(--gold-light)}
-.login-error{
-  background:rgba(224,69,69,.12);border:1px solid rgba(224,69,69,.3);border-radius:8px;
-  padding:10px 14px;font-size:13px;color:#e88;margin-bottom:14px;display:none
-}
-.login-recent{margin-top:16px}
-.login-recent-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
-.login-recent-list{display:flex;flex-wrap:wrap;gap:8px}
-.recent-email-btn{
-  background:rgba(255,255,255,.05);border:1px solid var(--navy-border);border-radius:20px;
-  padding:5px 12px;font-size:12px;color:var(--text-secondary);cursor:pointer;transition:.2s
-}
-.recent-email-btn:hover{background:rgba(201,162,39,.1);border-color:var(--gold);color:var(--gold-light)}
-
-/* ===== LAYOUT ===== */
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--navy-border);border-radius:4px}
+#loginScreen{position:fixed;inset:0;background:radial-gradient(ellipse at center,#0d1f36 0%,#060e18 70%);display:flex;align-items:center;justify-content:center;z-index:9999}
+.login-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:20px;padding:40px 36px;width:min(400px,95vw);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.login-logo{text-align:center;margin-bottom:24px}.login-logo h1{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-top:8px;letter-spacing:.5px}.login-logo p{font-size:11px;letter-spacing:3px;color:var(--text-muted);text-transform:uppercase;margin-top:4px}
+.login-field{margin-bottom:18px}.login-field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}.login-field input{width:100%;padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid var(--navy-border);border-radius:10px;color:var(--text-primary);font-size:14px;outline:none;transition:border .2s}.login-field input:focus{border-color:var(--gold)}
+.pw-wrap{position:relative}.pw-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;padding:4px}
+.login-btn{width:100%;padding:14px;background:var(--gold);border:none;border-radius:10px;color:#000;font-weight:700;font-size:14px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:background .2s;margin-top:8px}.login-btn:hover{background:var(--gold-light)}
+.login-error{background:rgba(224,69,69,.12);border:1px solid rgba(224,69,69,.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#e88;margin-bottom:14px;display:none}
+.login-recent{margin-top:16px}.login-recent-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}.login-recent-list{display:flex;flex-wrap:wrap;gap:8px}.recent-email-btn{background:rgba(255,255,255,.05);border:1px solid var(--navy-border);border-radius:20px;padding:5px 12px;font-size:12px;color:var(--text-secondary);cursor:pointer;transition:.2s}.recent-email-btn:hover{background:rgba(201,162,39,.1);border-color:var(--gold);color:var(--gold-light)}
 #app{display:none;height:100vh;flex-direction:column}
-.app-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 20px;background:var(--navy-mid);border-bottom:1px solid var(--navy-border);
-  min-height:56px;position:sticky;top:0;z-index:100;flex-shrink:0
-}
-.app-header-left{display:flex;align-items:center;gap:12px}
-.sidebar-toggle{
-  background:none;border:1px solid var(--navy-border);border-radius:8px;
-  padding:6px 10px;color:var(--text-secondary);cursor:pointer;font-size:16px;
-  display:none;transition:.2s
-}
-.sidebar-toggle:hover{color:var(--gold);border-color:var(--gold)}
-.app-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600}
-.app-subtitle{font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
-.header-actions{display:flex;gap:8px;align-items:center}
-.header-btn{
-  padding:7px 14px;background:rgba(255,255,255,.06);border:1px solid var(--navy-border);
-  border-radius:8px;color:var(--text-secondary);font-size:12px;cursor:pointer;
-  display:flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap
-}
-.header-btn:hover{background:rgba(201,162,39,.1);border-color:var(--gold);color:var(--gold-light)}
-.header-btn.danger:hover{background:rgba(224,69,69,.1);border-color:var(--red);color:#e88}
-.user-badge{
-  background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);border-radius:20px;
-  padding:4px 12px;font-size:11px;color:var(--gold-light);display:flex;align-items:center;gap:6px
-}
-.user-badge .role-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
-.user-badge .role-dot.client{background:var(--blue)}
-.readonly-banner{
-  background:rgba(74,143,232,.08);border-bottom:1px solid rgba(74,143,232,.2);
-  padding:6px 20px;text-align:center;font-size:12px;color:var(--blue);
-  display:none;flex-shrink:0
-}
-
-/* ===== MAIN LAYOUT ===== */
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--navy-mid);border-bottom:1px solid var(--navy-border);min-height:56px;position:sticky;top:0;z-index:100;flex-shrink:0}
+.app-header-left{display:flex;align-items:center;gap:12px}.sidebar-toggle{background:none;border:1px solid var(--navy-border);border-radius:8px;padding:6px 10px;color:var(--text-secondary);cursor:pointer;font-size:16px;display:none;transition:.2s}.sidebar-toggle:hover{color:var(--gold);border-color:var(--gold)}
+.app-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600}.app-subtitle{font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+.header-actions{display:flex;gap:8px;align-items:center}.header-btn{padding:7px 14px;background:rgba(255,255,255,.06);border:1px solid var(--navy-border);border-radius:8px;color:var(--text-secondary);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap}.header-btn:hover{background:rgba(201,162,39,.1);border-color:var(--gold);color:var(--gold-light)}.header-btn.danger:hover{background:rgba(224,69,69,.1);border-color:var(--red);color:#e88}
+.user-badge{background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--gold-light);display:flex;align-items:center;gap:6px}.role-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}.role-dot.client{background:var(--blue)}
+.readonly-banner{background:rgba(74,143,232,.08);border-bottom:1px solid rgba(74,143,232,.2);padding:6px 20px;text-align:center;font-size:12px;color:var(--blue);display:none;flex-shrink:0}
 .app-body{display:flex;flex:1;overflow:hidden}
-
-/* ===== SIDEBAR ===== */
-.sidebar{
-  width:var(--sidebar-w);background:var(--navy-mid);border-right:1px solid var(--navy-border);
-  display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;transition:width .3s ease;
-}
-.sidebar.collapsed{width:0;border:none}
-.sidebar-inner{width:var(--sidebar-w);overflow-y:auto;display:flex;flex-direction:column;height:100%}
-.sidebar-header{
-  padding:16px 20px 12px;border-bottom:1px solid var(--navy-border);flex-shrink:0
-}
-.sidebar-header h3{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
-.sidebar-search{
-  padding:10px 16px;border-bottom:1px solid var(--navy-border);flex-shrink:0
-}
-.sidebar-search input{
-  width:100%;padding:8px 12px;background:rgba(255,255,255,.04);border:1px solid var(--navy-border);
-  border-radius:8px;color:var(--text-primary);font-size:13px;outline:none
-}
-.sidebar-search input:focus{border-color:var(--gold)}
-.sidebar-clients{flex:1;overflow-y:auto;padding:8px}
-.sidebar-client-item{
-  padding:10px 14px;border-radius:10px;cursor:pointer;transition:.2s;margin-bottom:2px;
-  border:1px solid transparent
-}
-.sidebar-client-item:hover{background:rgba(201,162,39,.06);border-color:rgba(201,162,39,.15)}
-.sidebar-client-item.active{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3)}
-.sidebar-client-name{font-size:13px;font-weight:500;color:var(--text-primary)}
-.sidebar-client-email{font-size:11px;color:var(--text-muted);margin-top:2px}
-.sidebar-client-key{font-size:10px;color:var(--gold);margin-top:2px;font-family:monospace}
-.sidebar-footer{padding:12px 16px;border-top:1px solid var(--navy-border);flex-shrink:0}
-.sidebar-add-btn{
-  width:100%;padding:9px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);
-  border-radius:8px;color:var(--gold);font-size:12px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s
-}
-.sidebar-add-btn:hover{background:rgba(201,162,39,.2)}
-
-/* ===== CONTENT AREA ===== */
-.content-area{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.content-scroll{flex:1;overflow-y:auto;padding:20px}
-
-/* ===== TABS ===== */
-.tabs-bar{
-  display:flex;gap:4px;overflow-x:auto;padding:12px 20px;
-  border-bottom:1px solid var(--navy-border);background:var(--navy-mid);flex-shrink:0;
-  scrollbar-width:none
-}
-.tabs-bar::-webkit-scrollbar{display:none}
-.tab-btn{
-  padding:6px 14px;border-radius:20px;border:1px solid transparent;
-  color:var(--text-muted);font-size:12px;cursor:pointer;background:none;
-  white-space:nowrap;transition:.2s;display:flex;align-items:center;gap:6px
-}
-.tab-btn:hover{color:var(--text-secondary);background:rgba(255,255,255,.04)}
-.tab-btn.active{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold)}
-.tab-badge{
-  background:var(--red);color:#fff;border-radius:10px;padding:1px 6px;font-size:10px
-}
-
-/* ===== CARDS ===== */
-.card{
-  background:var(--navy-card);border:1px solid var(--navy-border);border-radius:14px;
-  padding:20px;margin-bottom:16px
-}
-.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.card-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
-.card-action{
-  padding:5px 12px;background:none;border:1px solid var(--navy-border);border-radius:8px;
-  color:var(--text-muted);font-size:11px;cursor:pointer;transition:.2s
-}
-.card-action:hover{border-color:var(--gold);color:var(--gold)}
-
-/* ===== DASHBOARD ===== */
-.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px}
-.dash-card{
-  background:var(--navy-card);border:1px solid var(--navy-border);border-radius:14px;padding:20px;
-  transition:.2s;cursor:pointer
-}
-.dash-card:hover{border-color:var(--gold);transform:translateY(-1px)}
-.dash-card-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
-.dash-card-value{font-size:32px;font-weight:700;color:var(--text-primary)}
-.dash-card-sub{font-size:12px;color:var(--text-muted);margin-top:4px}
-.dash-card-icon{font-size:24px;margin-bottom:10px}
-
-/* ===== SALDO CARDS ===== */
-.saldo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.saldo-card{
-  background:var(--navy-card);border:1px solid var(--navy-border);border-radius:12px;
-  padding:16px;transition:.2s
-}
-.saldo-card:hover{border-color:rgba(201,162,39,.3)}
-.saldo-prog{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:6px}
-.saldo-val{font-size:26px;font-weight:700;color:var(--text-primary)}
-.saldo-val span{font-size:12px;color:var(--text-muted)}
-
-/* ===== TABLES ===== */
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;padding:10px 14px;border-bottom:1px solid var(--navy-border);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);font-weight:500}
-td{padding:10px 14px;border-bottom:1px solid rgba(22,48,80,.5);color:var(--text-secondary)}
-tr:hover td{background:rgba(255,255,255,.02);color:var(--text-primary)}
-.td-actions{display:flex;gap:6px}
-.td-btn{
-  padding:4px 10px;border-radius:6px;border:1px solid var(--navy-border);
-  background:none;color:var(--text-muted);font-size:11px;cursor:pointer;transition:.2s
-}
-.td-btn:hover{border-color:var(--gold);color:var(--gold)}
-.td-btn.danger:hover{border-color:var(--red);color:#e88}
-
-/* ===== FORMS / MODALS ===== */
-.modal-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;
-  display:none;align-items:center;justify-content:center;padding:20px
-}
-.modal-overlay.open{display:flex}
-.modal{
-  background:var(--navy-card);border:1px solid var(--navy-border);border-radius:16px;
-  padding:28px;width:min(560px,100%);max-height:85vh;overflow-y:auto;
-  box-shadow:0 20px 60px rgba(0,0,0,.6)
-}
-.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.modal-title{font-size:16px;font-weight:600;color:var(--text-primary)}
-.modal-close{
-  background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:20px;padding:4px;
-  border-radius:6px;transition:.2s
-}
-.modal-close:hover{color:var(--red)}
-.form-group{margin-bottom:16px}
-.form-label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
-.form-input{
-  width:100%;padding:11px 14px;background:rgba(255,255,255,.04);
-  border:1px solid var(--navy-border);border-radius:10px;color:var(--text-primary);
-  font-size:14px;outline:none;transition:border .2s;font-family:inherit
-}
-.form-input:focus{border-color:var(--gold)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
-.btn-primary{
-  padding:10px 22px;background:var(--gold);border:none;border-radius:10px;
-  color:#000;font-weight:700;font-size:13px;cursor:pointer;transition:.2s
-}
-.btn-primary:hover{background:var(--gold-light)}
-.btn-secondary{
-  padding:10px 22px;background:none;border:1px solid var(--navy-border);border-radius:10px;
-  color:var(--text-secondary);font-size:13px;cursor:pointer;transition:.2s
-}
-.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
-.btn-danger{
-  padding:10px 22px;background:none;border:1px solid rgba(224,69,69,.3);border-radius:10px;
-  color:#e88;font-size:13px;cursor:pointer;transition:.2s
-}
-.btn-danger:hover{background:rgba(224,69,69,.1)}
-
-/* ===== BADGES ===== */
-.badge{
-  display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:500
-}
-.badge-green{background:rgba(39,184,125,.12);color:var(--green);border:1px solid rgba(39,184,125,.25)}
-.badge-red{background:rgba(224,69,69,.12);color:#e88;border:1px solid rgba(224,69,69,.25)}
-.badge-blue{background:rgba(74,143,232,.12);color:var(--blue);border:1px solid rgba(74,143,232,.25)}
-.badge-gold{background:rgba(201,162,39,.12);color:var(--gold);border:1px solid rgba(201,162,39,.25)}
-
-/* ===== TOAST ===== */
-.toast{
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  background:var(--green);color:#fff;padding:12px 24px;border-radius:30px;
-  font-size:14px;font-weight:500;z-index:9999;opacity:0;
-  transition:opacity .3s;pointer-events:none;white-space:nowrap
-}
-.toast.error{background:var(--red)}
-.toast.show{opacity:1}
-
-/* ===== CHART ===== */
-.chart-wrap{position:relative;height:220px;margin:10px 0}
-
-/* ===== SECTIONS ===== */
-.section-title{
-  font-size:18px;font-weight:600;color:var(--text-primary);margin-bottom:4px
-}
-.section-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px}
-
-/* ===== CLIENT PROFILE ===== */
-.client-profile{
-  background:var(--navy-card);border:1px solid var(--navy-border);border-radius:14px;
-  padding:24px;margin-bottom:20px
-}
-.client-profile-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.client-avatar{
-  width:56px;height:56px;border-radius:50%;background:rgba(201,162,39,.15);
-  border:2px solid rgba(201,162,39,.3);display:flex;align-items:center;justify-content:center;
-  font-size:22px;font-weight:700;color:var(--gold);flex-shrink:0
-}
-.client-profile-name{font-size:20px;font-weight:600;color:var(--text-primary)}
-.client-profile-email{font-size:13px;color:var(--text-muted);margin-top:2px}
-.client-data-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.client-data-item label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px}
-.client-data-item span{font-size:14px;color:var(--text-primary)}
-.obs-box{
-  background:rgba(255,255,255,.03);border:1px solid var(--navy-border);border-radius:8px;
-  padding:12px 16px;font-size:13px;color:var(--text-secondary);line-height:1.6;margin-top:12px
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .sidebar-toggle{display:flex}
-  .sidebar{position:fixed;left:0;top:56px;bottom:0;z-index:200;transition:transform .3s ease}
-  .sidebar.collapsed{transform:translateX(-100%);width:var(--sidebar-w)}
-  .sidebar:not(.collapsed){transform:translateX(0)}
-  .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;display:none}
-  .sidebar-overlay.show{display:block}
-  .header-actions .header-btn span{display:none}
-  .form-row{grid-template-columns:1fr}
-  .content-scroll{padding:14px}
-}
-@media(max-width:480px){
-  .dash-grid{grid-template-columns:1fr 1fr}
-  .saldo-grid{grid-template-columns:1fr 1fr}
-  .app-subtitle{display:none}
-}
-
-/* ===== PRINT ===== */
-@media print{
-  .app-header,.tabs-bar,.sidebar,.header-actions,.td-actions,.card-action{display:none!important}
-  .content-area{overflow:visible}
-}
+.sidebar{width:var(--sidebar-w);background:var(--navy-mid);border-right:1px solid var(--navy-border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;transition:width .3s ease}.sidebar.collapsed{width:0;border:none}.sidebar-inner{width:var(--sidebar-w);overflow-y:auto;display:flex;flex-direction:column;height:100%}
+.sidebar-header{padding:16px 20px 12px;border-bottom:1px solid var(--navy-border);flex-shrink:0}.sidebar-header h3{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
+.sidebar-search{padding:10px 16px;border-bottom:1px solid var(--navy-border);flex-shrink:0}.sidebar-search input{width:100%;padding:8px 12px;background:rgba(255,255,255,.04);border:1px solid var(--navy-border);border-radius:8px;color:var(--text-primary);font-size:13px;outline:none}.sidebar-search input:focus{border-color:var(--gold)}
+.sidebar-clients{flex:1;overflow-y:auto;padding:8px}.sidebar-client-item{padding:10px 14px;border-radius:10px;cursor:pointer;transition:.2s;margin-bottom:2px;border:1px solid transparent}.sidebar-client-item:hover{background:rgba(201,162,39,.06);border-color:rgba(201,162,39,.15)}.sidebar-client-item.active{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3)}
+.sidebar-client-name{font-size:13px;font-weight:500;color:var(--text-primary)}.sidebar-client-email{font-size:11px;color:var(--text-muted);margin-top:2px}.sidebar-client-key{font-size:10px;color:var(--gold);margin-top:2px;font-family:monospace}
+.sidebar-footer{padding:12px 16px;border-top:1px solid var(--navy-border);flex-shrink:0}.sidebar-add-btn{width:100%;padding:9px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:8px;color:var(--gold);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}.sidebar-add-btn:hover{background:rgba(201,162,39,.2)}
+.content-area{flex:1;display:flex;flex-direction:column;overflow:hidden}.content-scroll{flex:1;overflow-y:auto;padding:20px}
+.tabs-bar{display:flex;gap:4px;overflow-x:auto;padding:12px 20px;border-bottom:1px solid var(--navy-border);background:var(--navy-mid);flex-shrink:0;scrollbar-width:none}.tabs-bar::-webkit-scrollbar{display:none}.tab-btn{padding:6px 14px;border-radius:20px;border:1px solid transparent;color:var(--text-muted);font-size:12px;cursor:pointer;background:none;white-space:nowrap;transition:.2s;display:flex;align-items:center;gap:6px}.tab-btn:hover{color:var(--text-secondary);background:rgba(255,255,255,.04)}.tab-btn.active{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold)}.tab-badge{background:var(--red);color:#fff;border-radius:10px;padding:1px 6px;font-size:10px}
+.card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:14px;padding:20px;margin-bottom:16px}.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.card-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}.card-action{padding:5px 12px;background:none;border:1px solid var(--navy-border);border-radius:8px;color:var(--text-muted);font-size:11px;cursor:pointer;transition:.2s}.card-action:hover{border-color:var(--gold);color:var(--gold)}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px}.dash-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:14px;padding:20px;transition:.2s;cursor:pointer}.dash-card:hover{border-color:var(--gold);transform:translateY(-1px)}.dash-card-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}.dash-card-value{font-size:32px;font-weight:700;color:var(--text-primary)}.dash-card-sub{font-size:12px;color:var(--text-muted);margin-top:4px}.dash-card-icon{font-size:24px;margin-bottom:10px}
+.saldo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.saldo-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:12px;padding:16px;transition:.2s;position:relative}.saldo-card:hover{border-color:rgba(201,162,39,.3)}.saldo-prog{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:6px}.saldo-val{font-size:26px;font-weight:700;color:var(--text-primary)}.saldo-val span{font-size:12px;color:var(--text-muted)}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;padding:10px 14px;border-bottom:1px solid var(--navy-border);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);font-weight:500}td{padding:10px 14px;border-bottom:1px solid rgba(22,48,80,.5);color:var(--text-secondary)}tr:hover td{background:rgba(255,255,255,.02);color:var(--text-primary)}.td-actions{display:flex;gap:6px}.td-btn{padding:4px 10px;border-radius:6px;border:1px solid var(--navy-border);background:none;color:var(--text-muted);font-size:11px;cursor:pointer;transition:.2s}.td-btn:hover{border-color:var(--gold);color:var(--gold)}.td-btn.danger:hover{border-color:var(--red);color:#e88}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}.modal-overlay.open{display:flex}.modal{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:16px;padding:28px;width:min(560px,100%);max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.6)}.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.modal-title{font-size:16px;font-weight:600;color:var(--text-primary)}.modal-close{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:20px;padding:4px;border-radius:6px;transition:.2s}.modal-close:hover{color:var(--red)}
+.form-group{margin-bottom:16px}.form-label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}.form-input{width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid var(--navy-border);border-radius:10px;color:var(--text-primary);font-size:14px;outline:none;transition:border .2s;font-family:inherit}.form-input:focus{border-color:var(--gold)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+.btn-primary{padding:10px 22px;background:var(--gold);border:none;border-radius:10px;color:#000;font-weight:700;font-size:13px;cursor:pointer;transition:.2s}.btn-primary:hover{background:var(--gold-light)}.btn-secondary{padding:10px 22px;background:none;border:1px solid var(--navy-border);border-radius:10px;color:var(--text-secondary);font-size:13px;cursor:pointer;transition:.2s}.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}.btn-danger{padding:10px 22px;background:none;border:1px solid rgba(224,69,69,.3);border-radius:10px;color:#e88;font-size:13px;cursor:pointer;transition:.2s}.btn-danger:hover{background:rgba(224,69,69,.1)}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:500}.badge-green{background:rgba(39,184,125,.12);color:var(--green);border:1px solid rgba(39,184,125,.25)}.badge-red{background:rgba(224,69,69,.12);color:#e88;border:1px solid rgba(224,69,69,.25)}.badge-blue{background:rgba(74,143,232,.12);color:var(--blue);border:1px solid rgba(74,143,232,.25)}.badge-gold{background:rgba(201,162,39,.12);color:var(--gold);border:1px solid rgba(201,162,39,.25)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}.toast.error{background:var(--red)}.toast.show{opacity:1}
+.section-title{font-size:18px;font-weight:600;color:var(--text-primary);margin-bottom:4px}.section-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px}
+.client-profile{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:14px;padding:24px;margin-bottom:20px}.client-profile-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}.client-avatar{width:56px;height:56px;border-radius:50%;background:rgba(201,162,39,.15);border:2px solid rgba(201,162,39,.3);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--gold);flex-shrink:0}.client-profile-name{font-size:20px;font-weight:600;color:var(--text-primary)}.client-profile-email{font-size:13px;color:var(--text-muted);margin-top:2px}.client-data-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.client-data-item label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px}.client-data-item span{font-size:14px;color:var(--text-primary)}.obs-box{background:rgba(255,255,255,.03);border:1px solid var(--navy-border);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--text-secondary);line-height:1.6;margin-top:12px}
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;display:none}.sidebar-overlay.show{display:block}
+@media(max-width:768px){.sidebar-toggle{display:flex}.sidebar{position:fixed;left:0;top:56px;bottom:0;z-index:200;transition:transform .3s ease}.sidebar.collapsed{transform:translateX(-100%);width:var(--sidebar-w)}.sidebar:not(.collapsed){transform:translateX(0)}.header-actions .header-btn span{display:none}.form-row{grid-template-columns:1fr}.content-scroll{padding:14px}}
+@media(max-width:480px){.dash-grid{grid-template-columns:1fr 1fr}.saldo-grid{grid-template-columns:1fr 1fr}.app-subtitle{display:none}}
 </style>
 </head>
-
 <body>
-<!-- SIDEBAR OVERLAY (mobile) -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
-<!-- LOGIN SCREEN -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="login-logo">
       <svg width="72" height="72" viewBox="0 0 72 72" style="display:block;margin:0 auto">
         <rect width="72" height="72" rx="16" fill="#0a1a2e"/>
         <text x="36" y="44" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="26" font-weight="700" fill="#c9a227">VMM</text>
-        <text x="36" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4e647e" letter-spacing="2">GESTÃO</text>
+        <text x="36" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4e647e" letter-spacing="2">GESTAO</text>
       </svg>
       <h1>DV Milhas</h1>
-      <p>Sistema de Gestão de Milhas</p>
+      <p>Sistema de Gestao de Milhas</p>
     </div>
     <div class="login-error" id="loginError"></div>
-    <div class="login-field">
-      <label>E-mail</label>
-      <input type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="email">
-    </div>
-    <div class="login-field">
-      <label>Senha</label>
-      <div class="pw-wrap">
-        <input type="password" id="loginPass" placeholder="Sua senha" autocomplete="current-password">
-        <button class="pw-toggle" onclick="togglePassword()" type="button" id="eyeBtn">👁</button>
-      </div>
+    <div class="login-field"><label>E-mail</label><input type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="email"></div>
+    <div class="login-field"><label>Senha</label>
+      <div class="pw-wrap"><input type="password" id="loginPass" placeholder="Sua senha" autocomplete="current-password"><button class="pw-toggle" onclick="togglePassword()" type="button" id="eyeBtn">&#128065;</button></div>
     </div>
     <button class="login-btn" onclick="doLogin()">Entrar no Sistema</button>
     <div class="login-recent" id="recentBox" style="display:none">
@@ -373,1392 +81,123 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text-primary)}
     </div>
   </div>
 </div>
-
-<!-- APP -->
 <div id="app">
-  <!-- HEADER -->
   <div class="app-header">
     <div class="app-header-left">
-      <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
-      <div>
-        <div class="app-title" id="headerTitle">DV Milhas</div>
-        <div class="app-subtitle" id="headerSubtitle">Sistema de Gestão</div>
-      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">&#9776;</button>
+      <div><div class="app-title">DV Milhas</div><div class="app-subtitle">Gestao de Milhas</div></div>
     </div>
     <div class="header-actions">
-      <div class="user-badge" id="userBadge">
-        <span class="role-dot" id="roleDot"></span>
-        <span id="userBadgeName"></span>
-      </div>
-      <button class="header-btn" id="btnSave" onclick="saveToStorage()">💾 <span>Salvar</span></button>
-      <button class="header-btn" id="btnExport" onclick="showExportModal()">📤 <span>Salvar como</span></button>
-      <button class="header-btn danger" onclick="doLogout()">⏏ <span>Sair</span></button>
+      <div class="user-badge"><span class="role-dot" id="roleDot"></span><span id="userBadgeName"></span></div>
+      <button class="header-btn" id="btnSave" onclick="saveToStorage()">&#128190; <span>Salvar</span></button>
+      <button class="header-btn" id="btnExport" onclick="showExportModal()">&#128228; <span>Salvar como</span></button>
+      <button class="header-btn danger" onclick="doLogout()">&#9167; <span>Sair</span></button>
     </div>
   </div>
-
-  <!-- READONLY BANNER -->
-  <div class="readonly-banner" id="readonlyBanner">
-    🔒 Modo somente leitura — Você tem acesso de visualização. Para editar, contate o administrador.
-  </div>
-
-  <!-- BODY -->
+  <div class="readonly-banner" id="readonlyBanner">&#128274; Modo somente leitura - Voce tem acesso de visualizacao apenas.</div>
   <div class="app-body">
-    <!-- SIDEBAR (ADM only) -->
     <div class="sidebar" id="sidebar">
       <div class="sidebar-inner">
-        <div class="sidebar-header">
-          <h3>👥 Clientes Cadastrados</h3>
-        </div>
-        <div class="sidebar-search">
-          <input type="text" id="sidebarSearch" placeholder="Buscar cliente..." oninput="filterSidebarClients(this.value)">
-        </div>
+        <div class="sidebar-header"><h3>&#128101; Clientes Cadastrados</h3></div>
+        <div class="sidebar-search"><input type="text" id="sidebarSearch" placeholder="Buscar cliente..." oninput="filterSidebarClients(this.value)"></div>
         <div class="sidebar-clients" id="sidebarClientList"></div>
-        <div class="sidebar-footer" id="sidebarFooter">
-          <button class="sidebar-add-btn" onclick="openNewClientModal()">+ Novo Cliente</button>
-        </div>
+        <div class="sidebar-footer" id="sidebarFooter"><button class="sidebar-add-btn" onclick="openNewClientModal()">+ Novo Cliente</button></div>
       </div>
     </div>
-
-    <!-- CONTENT -->
     <div class="content-area">
-      <!-- TABS -->
       <div class="tabs-bar" id="tabsBar"></div>
-
-      <!-- MAIN CONTENT -->
       <div class="content-scroll" id="mainContent"></div>
     </div>
   </div>
 </div>
-
-<!-- MODALS -->
-<!-- Client Modal -->
-<div class="modal-overlay" id="clientModal">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title" id="clientModalTitle">Dados do Cliente</span>
-      <button class="modal-close" onclick="closeModal('clientModal')">×</button>
-    </div>
-    <div id="clientModalBody"></div>
-  </div>
-</div>
-
-<!-- Op Modal -->
-<div class="modal-overlay" id="opModal">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title" id="opModalTitle">Operação</span>
-      <button class="modal-close" onclick="closeModal('opModal')">×</button>
-    </div>
-    <div id="opModalBody"></div>
-  </div>
-</div>
-
-<!-- Export Modal -->
-<div class="modal-overlay" id="exportModal">
-  <div class="modal" style="max-width:440px">
-    <div class="modal-header">
-      <span class="modal-title">📤 Salvar Como / Exportar</span>
-      <button class="modal-close" onclick="closeModal('exportModal')">×</button>
-    </div>
-    <div style="padding:8px 0">
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Escolha como deseja exportar ou duplicar os dados do sistema.</p>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <button class="btn-primary" onclick="exportFullJSON()" style="text-align:left;padding:14px 18px">
-          📦 Exportar JSON completo<br><small style="font-weight:400;color:rgba(0,0,0,.6)">Todos os dados do sistema em um arquivo</small>
-        </button>
-        <button class="btn-secondary" onclick="exportClientJSON()" style="text-align:left;padding:14px 18px">
-          👤 Exportar cliente atual<br><small style="color:var(--text-muted)">Apenas os dados do cliente selecionado</small>
-        </button>
-        <button class="btn-secondary" onclick="exportOpsCSV()" style="text-align:left;padding:14px 18px">
-          📊 Exportar Operações CSV<br><small style="color:var(--text-muted)">Histórico de operações em planilha</small>
-        </button>
-        <button class="btn-secondary" onclick="duplicateCurrentData()" style="text-align:left;padding:14px 18px">
-          📋 Duplicar snapshot<br><small style="color:var(--text-muted)">Criar cópia de segurança no histórico</small>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Generic Modal -->
-<div class="modal-overlay" id="genericModal">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title" id="genericModalTitle"></span>
-      <button class="modal-close" onclick="closeModal('genericModal')">×</button>
-    </div>
-    <div id="genericModalBody"></div>
-  </div>
-</div>
-
-<!-- TOAST -->
+<div class="modal-overlay" id="clientModal"><div class="modal"><div class="modal-header"><span class="modal-title" id="clientModalTitle">Cliente</span><button class="modal-close" onclick="closeModal('clientModal')">x</button></div><div id="clientModalBody"></div></div></div>
+<div class="modal-overlay" id="opModal"><div class="modal"><div class="modal-header"><span class="modal-title" id="opModalTitle">Operacao</span><button class="modal-close" onclick="closeModal('opModal')">x</button></div><div id="opModalBody"></div></div></div>
+<div class="modal-overlay" id="exportModal"><div class="modal" style="max-width:440px"><div class="modal-header"><span class="modal-title">&#128228; Salvar Como / Exportar</span><button class="modal-close" onclick="closeModal('exportModal')">x</button></div><div style="padding:8px 0"><p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Escolha como exportar os dados.</p><div style="display:flex;flex-direction:column;gap:12px"><button class="btn-primary" onclick="exportFullJSON()" style="text-align:left;padding:14px 18px">&#128230; Exportar JSON completo<br><small style="font-weight:400">Todos os dados em um arquivo</small></button><button class="btn-secondary" onclick="exportClientJSON()" style="text-align:left;padding:14px 18px">&#128100; Exportar cliente atual<br><small>Apenas o cliente selecionado</small></button><button class="btn-secondary" onclick="exportOpsCSV()" style="text-align:left;padding:14px 18px">&#128202; Exportar Operacoes CSV<br><small>Historico em planilha</small></button><button class="btn-secondary" onclick="duplicateCurrentData()" style="text-align:left;padding:14px 18px">&#128203; Duplicar snapshot<br><small>Copia de seguranca no historico</small></button></div></div></div></div>
+<div class="modal-overlay" id="genericModal"><div class="modal"><div class="modal-header"><span class="modal-title" id="genericModalTitle"></span><button class="modal-close" onclick="closeModal('genericModal')">x</button></div><div id="genericModalBody"></div></div></div>
 <div class="toast" id="toast"></div>
-
-
 <script>
-<script>
-// ========================================
-// SISTEMA DE AUTENTICAÇÃO E CONTROLE
-// ========================================
-
-// USUÁRIOS DO SISTEMA
-const SYSTEM_USERS = [
-  // ---- ADMINISTRADORES (CRUD total) ----
-  {
-    email: 'dvicuuna@gmail.com',
-    password: '1234',
-    name: 'Daniella Vicuuna',
-    phone: '+55 (83) 8717-0122',
-    role: 'ADM',
-    clientKeys: null  // null = acesso a todos
-  },
-  {
-    email: 'cidgoe81@gmail.com',
-    password: '1234',
-    name: 'Cid Oliveira',
-    phone: '+55 (83) 9 8878-0900',
-    role: 'ADM',
-    clientKeys: null
-  },
-  {
-    email: 'laisedamasio@yahoo.com.br',
-    password: '1234',
-    name: 'Laise Damisio',
-    phone: '+55 71 8451-3374',
-    role: 'ADM',
-    clientKeys: null
-  },
-  // ---- EQUIPE INTERNA (CRUD total) ----
-  {
-    email: 'equipe@dv.com',
-    password: '5678',
-    name: 'Equipe DV',
-    phone: '',
-    role: 'EQUIPE',
-    clientKeys: null
-  },
-  // ---- CLIENTES (somente leitura) ----
-  {
-    email: 'danielaatoscano@gmail.com',
-    password: '1234',
-    name: 'Daniela e Rodrigo',
-    phone: '(83) 99609-9596',
-    role: 'CLIENTE',
-    clientKeys: ['daniela', 'rodrigo']
-  }
+var SYSTEM_USERS=[
+  {email:"dvicuuna@gmail.com",password:"1234",name:"Daniella Vicuuna",phone:"+55 (83) 8717-0122",role:"ADM",clientKeys:null},
+  {email:"cidgoe81@gmail.com",password:"1234",name:"Cid Oliveira",phone:"+55 (83) 9 8878-0900",role:"ADM",clientKeys:null},
+  {email:"laisedamasio@yahoo.com.br",password:"1234",name:"Laise Damisio",phone:"+55 71 8451-3374",role:"ADM",clientKeys:null},
+  {email:"equipe@dv.com",password:"5678",name:"Equipe DV",phone:"",role:"EQUIPE",clientKeys:null},
+  {email:"danielaatoscano@gmail.com",password:"1234",name:"Daniela e Rodrigo",phone:"(83) 99609-9596",role:"CLIENTE",clientKeys:["daniela","rodrigo"]}
 ];
+var STORAGE_KEY="dv_milhas_data_v2",STORAGE_HIST="dv_milhas_data_v2_hist",RECENT_KEY="lc_recent_emails_v1";
+var currentUser=null,currentClientKey=null,currentTab="dashboard",appData={},sidebarOpen=true;
+function isADM(){return currentUser&&(currentUser.role==="ADM"||currentUser.role==="EQUIPE")}
+function canEdit(){return isADM()}
+function fmtMiles(n){if(!n&&n!==0)return"--";return Number(n).toLocaleString("pt-BR")}
+function showToast(msg,isErr){var t=document.getElementById("toast");t.textContent=msg;t.className="toast"+(isErr?" error":"")+" show";clearTimeout(t._t);t._t=setTimeout(function(){t.className="toast"},3000)}
+function closeModal(id){document.getElementById(id).classList.remove("open")}
+function openModal(id){document.getElementById(id).classList.add("open")}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function saveToStorage(){try{appData.savedAt=new Date().toISOString();appData.savedBy=currentUser?currentUser.email:"system";appData.version=2;localStorage.setItem(STORAGE_KEY,JSON.stringify(appData));var h=JSON.parse(localStorage.getItem(STORAGE_HIST)||"[]");h.unshift({ts:appData.savedAt,by:appData.savedBy});if(h.length>10)h.length=10;localStorage.setItem(STORAGE_HIST,JSON.stringify(h));showToast("Dados salvos")}catch(e){showToast("Erro ao salvar: "+e.message,true)}}
+function loadFromStorage(){try{var r=localStorage.getItem(STORAGE_KEY);if(r)appData=JSON.parse(r);else appData=getDefaultData()}catch(e){appData=getDefaultData()}}
+function getDefaultData(){return{version:2,CLIENTES:{},SALDOS:{},PROGRAMAS:[],OPS:[],VIAGENS:[],CARDS:[],savedAt:null,savedBy:null}}
+function getVisibleClients(){if(!appData.CLIENTES)return{};if(isADM()||!currentUser.clientKeys)return appData.CLIENTES;var v={};(currentUser.clientKeys||[]).forEach(function(k){if(appData.CLIENTES[k])v[k]=appData.CLIENTES[k]});return v}
+function showExportModal(){openModal("exportModal")}
+function exportFullJSON(){var b=new Blob([JSON.stringify(appData,null,2)],{type:"application/json"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download="dvmilhas-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();URL.revokeObjectURL(u);closeModal("exportModal");showToast("JSON exportado")}
+function exportClientJSON(){if(!currentClientKey||!appData.CLIENTES[currentClientKey]){showToast("Selecione um cliente",true);return}var d={cliente:appData.CLIENTES[currentClientKey],saldos:(appData.SALDOS||{})[currentClientKey]||[],exportedAt:new Date().toISOString()};var b=new Blob([JSON.stringify(d,null,2)],{type:"application/json"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download="cliente-"+currentClientKey+"-"+new Date().toISOString().slice(0,10)+".json";a.click();URL.revokeObjectURL(u);closeModal("exportModal");showToast("Cliente exportado")}
+function exportOpsCSV(){var ops=appData.OPS||[];if(!ops.length){showToast("Nenhuma operacao para exportar",true);return}var h=["Data","Operacao","Por","Resultado","Obs"];var rows=ops.map(function(o){return[o.data||"",o.op||"",o.por||"",o.res||"",o.obs||""].map(function(v){return'"'+String(v).replace(/"/g,'""')+'"' }).join(",")});var csv=[h.join(",")].concat(rows).join("\n");var b=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download="operacoes-"+new Date().toISOString().slice(0,10)+".csv";a.click();URL.revokeObjectURL(u);closeModal("exportModal");showToast("CSV exportado")}
+function duplicateCurrentData(){saveToStorage();closeModal("exportModal");showToast("Snapshot salvo no historico")}
+function getRecentEmails(){try{return JSON.parse(localStorage.getItem(RECENT_KEY)||"[]")}catch(e){return[]}}
+function saveRecentEmail(email){var arr=getRecentEmails().filter(function(e){return e!==email});arr.unshift(email);if(arr.length>5)arr.length=5;localStorage.setItem(RECENT_KEY,JSON.stringify(arr))}
+function selectEmail(email){document.getElementById("loginEmail").value=email;document.getElementById("loginPass").focus()}
+function togglePassword(){var i=document.getElementById("loginPass");var b=document.getElementById("eyeBtn");if(i.type==="password"){i.type="text";b.textContent="Ocultar"}else{i.type="password";b.textContent="Ver"}}
+function renderRecentEmails(){var arr=getRecentEmails(),box=document.getElementById("recentBox"),list=document.getElementById("recentList");if(!arr.length){box.style.display="none";return}box.style.display="";list.innerHTML=arr.map(function(e){return "<button class=\"recent-email-btn\" onclick=\"selectEmail('"+esc(e)+"')\">" +esc(e)+"</button>"}).join("")}
+function doLogin(){var email=document.getElementById("loginEmail").value.trim().toLowerCase(),pass=document.getElementById("loginPass").value,errEl=document.getElementById("loginError");errEl.style.display="none";var user=SYSTEM_USERS.find(function(u){return u.email.toLowerCase()===email&&u.password===pass});if(!user){errEl.style.display="";errEl.textContent="E-mail ou senha incorretos.";return}currentUser=user;saveRecentEmail(email);loadFromStorage();initApp()}
+function doLogout(){if(canEdit())saveToStorage();currentUser=null;currentClientKey=null;document.getElementById("loginScreen").style.display="flex";document.getElementById("app").style.display="none";document.getElementById("loginEmail").value="";document.getElementById("loginPass").value="";renderRecentEmails()}
+function initApp(){document.getElementById("loginScreen").style.display="none";document.getElementById("app").style.display="flex";document.getElementById("roleDot").className="role-dot"+(isADM()?"":" client");document.getElementById("userBadgeName").textContent=currentUser.name.split(" ")[0];document.getElementById("readonlyBanner").style.display=isADM()?"none":"block";document.getElementById("btnSave").style.display=canEdit()?"":"none";document.getElementById("btnExport").style.display=canEdit()?"":"none";var sidebar=document.getElementById("sidebar");if(isADM()){sidebar.style.display="flex";sidebarOpen=window.innerWidth>768;sidebar.classList[sidebarOpen?"remove":"add"]("collapsed");document.getElementById("sidebarToggle").style.display="flex";renderSidebarClients()}else{sidebar.style.display="none";document.getElementById("sidebarToggle").style.display="none"}var clients=getVisibleClients(),keys=Object.keys(clients);if(keys.length>0)currentClientKey=keys[0];renderTabs();renderCurrentTab();if(canEdit()){clearInterval(window._autoSave);window._autoSave=setInterval(saveToStorage,300000)}}
+function toggleSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sidebarOverlay");if(s.classList.contains("collapsed")){s.classList.remove("collapsed");if(window.innerWidth<=768)o.classList.add("show");sidebarOpen=true}else{s.classList.add("collapsed");o.classList.remove("show");sidebarOpen=false}}
+function closeSidebar(){document.getElementById("sidebar").classList.add("collapsed");document.getElementById("sidebarOverlay").classList.remove("show");sidebarOpen=false}
+function renderSidebarClients(filter){var clients=appData.CLIENTES||{},list=document.getElementById("sidebarClientList"),keys=Object.keys(clients);if(filter)keys=keys.filter(function(k){var c=clients[k],q=filter.toLowerCase();return k.toLowerCase().indexOf(q)>-1||(c.nome||"").toLowerCase().indexOf(q)>-1||(c.email||"").toLowerCase().indexOf(q)>-1});if(!keys.length){list.innerHTML="<div style='padding:16px;text-align:center;color:var(--text-muted);font-size:12px'>Nenhum cliente</div>";return}list.innerHTML=keys.map(function(k){var c=clients[k],isActive=k===currentClientKey,ini=(c.nome||k).charAt(0).toUpperCase();return "<div class=\"sidebar-client-item"+(isActive?" active":"")+"\"><div style=\"display:flex;align-items:center;gap:10px\"><div style=\"width:32px;height:32px;border-radius:50%;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.3);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--gold);flex-shrink:0\">"+ini+"</div><div><div class='sidebar-client-name'>"+esc(c.nome||k)+"</div><div class='sidebar-client-email'>"+esc(c.email||"")+"</div><div class='sidebar-client-key'>key: "+k+"</div></div></div></div>"}).join("");var items=list.querySelectorAll(".sidebar-client-item");keys.forEach(function(k,i){items[i].onclick=function(){selectClient(k)}})}
+function filterSidebarClients(v){renderSidebarClients(v||undefined)}
+function selectClient(key){currentClientKey=key;if(window.innerWidth<=768)closeSidebar();renderSidebarClients(document.getElementById("sidebarSearch")?document.getElementById("sidebarSearch").value:undefined);renderTabs();renderCurrentTab()}
+function renderTabs(){var tabs=[{id:"dashboard",label:"&#127968; Dashboard"},{id:"clientes",label:"&#128100; Dados Pessoais"},{id:"saldos",label:"&#9992;&#65039; Saldos"},{id:"programas",label:"&#11088; Programas"},{id:"ops",label:"&#128203; Operacoes"},{id:"viagens",label:"&#127757; Viagens"},{id:"cartoes",label:"&#128179; Cartoes"}];var ops=appData.OPS||[],pend=ops.filter(function(o){return o.res&&o.res.toLowerCase().indexOf("pend")>-1}).length,bar=document.getElementById("tabsBar");bar.innerHTML=tabs.map(function(t){var badge=t.id==="ops"&&pend>0?"<span class='tab-badge'>"+pend+"</span>":"";return "<button class=\"tab-btn"+(currentTab===t.id?" active":"")+"\">"+t.label+badge+"</button>"}).join("");var btns=bar.querySelectorAll(".tab-btn");tabs.forEach(function(t,i){btns[i].onclick=function(){nav(t.id)}})}
+function nav(tab){currentTab=tab;renderTabs();renderCurrentTab()}
+function renderCurrentTab(){var el=document.getElementById("mainContent");switch(currentTab){case"dashboard":renderDashboard(el);break;case"clientes":renderClientes(el);break;case"saldos":renderSaldos(el);break;case"programas":renderProgramas(el);break;case"ops":renderOps(el);break;case"viagens":renderViagens(el);break;case"cartoes":renderCartoes(el);break;default:el.innerHTML="Secao em breve"}}
 
-// STORAGE KEYS
-const STORAGE_KEY = 'dv_milhas_data_v2';
-const STORAGE_HIST = 'dv_milhas_data_v2_hist';
-const RECENT_KEY  = 'lc_recent_emails_v1';
+function renderDashboard(el){var clients=getVisibleClients(),ops=appData.OPS||[],pend=ops.filter(function(o){return o.res&&o.res.toLowerCase().indexOf("pend")>-1}).length,saldos=appData.SALDOS||{},totalMiles=0;Object.values(saldos).forEach(function(arr){(arr||[]).forEach(function(s){if(s.val)totalMiles+=Number(s.val)||0})});var viagens=appData.VIAGENS||[],clientList=Object.values(clients).map(function(c){return c.nome||"?"}).join(", ");var html="<div class='section-title'>Dashboard Executivo</div><div class='section-sub'>Visao geral · "+new Date().toLocaleDateString("pt-BR")+"</div><div class='dash-grid'>";html+="<div class='dash-card'><div class='dash-card-icon'>&#128101;</div><div class='dash-card-label'>Clientes Cadastrados</div><div class='dash-card-value'>"+Object.keys(clients).length+"</div><div class='dash-card-sub'>"+esc(clientList)+"</div></div>";var milesStr=totalMiles>=1000000?(totalMiles/1000000).toFixed(2)+"M":fmtMiles(totalMiles);html+="<div class='dash-card'><div class='dash-card-icon'>&#9992;&#65039;</div><div class='dash-card-label'>Total Pontos/Milhas</div><div class='dash-card-value'>"+milesStr+"</div><div class='dash-card-sub'>Todos os programas</div></div>";html+="<div class='dash-card'><div class='dash-card-icon'>&#128260;</div><div class='dash-card-label'>Operacoes Registradas</div><div class='dash-card-value'>"+ops.length+"</div><div class='dash-card-sub' style='color:"+(pend?"var(--orange)":"var(--text-muted)")+"'>"+(pend?"&#9888; "+pend+" pendente(s)":"Sem pendencias")+"</div></div>";html+="<div class='dash-card'><div class='dash-card-icon'>&#127757;</div><div class='dash-card-label'>Viagens Planejadas</div><div class='dash-card-value'>"+viagens.length+"</div><div class='dash-card-sub'>"+(viagens[0]?esc(viagens[0].origem)+" > "+esc(viagens[0].destino):"Nenhuma")+"</div></div>";html+="</div>";if(appData.savedAt)html+="<div style='text-align:right;font-size:11px;color:var(--text-muted);margin-top:8px'>Ultimo save: "+new Date(appData.savedAt).toLocaleString("pt-BR")+"</div>";el.innerHTML=html;var cards=el.querySelectorAll(".dash-card");if(cards[0])cards[0].onclick=function(){nav("clientes")};if(cards[1])cards[1].onclick=function(){nav("saldos")};if(cards[2])cards[2].onclick=function(){nav("ops")};if(cards[3])cards[3].onclick=function(){nav("viagens")}}
+function renderClientes(el){var clients=getVisibleClients(),keys=Object.keys(clients);if(!currentClientKey||!clients[currentClientKey])currentClientKey=keys[0]||null;var html="<div class='section-title'>Dados Pessoais</div><div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px'>";keys.forEach(function(k){html+="<button class='tab-btn"+(k===currentClientKey?" active":"")+"'>" +esc((clients[k].nome||k))+"</button>"});if(isADM())html+="<button class='tab-btn'>+ Novo</button>";html+="</div>";if(!currentClientKey||!clients[currentClientKey]){el.innerHTML=html+"<p style='color:var(--text-muted)'>Nenhum cliente.</p>";var btns=el.querySelectorAll(".tab-btn");keys.forEach(function(k,i){btns[i].onclick=function(){selectClient(k)}});if(isADM()&&btns[keys.length])btns[keys.length].onclick=openNewClientModal;return}var c=clients[currentClientKey],ini=(c.nome||currentClientKey).charAt(0).toUpperCase();html+="<div class='client-profile'><div class='client-profile-header'><div class='client-avatar'>"+ini+"</div><div><div class='client-profile-name'>"+esc(c.nome||currentClientKey)+"</div><div class='client-profile-email'>"+esc(c.email||"")+"</div></div>";if(isADM())html+="<div style='margin-left:auto;display:flex;gap:8px'><button class='card-action' id='editClientBtn'>&#9998; Editar</button><button class='card-action' style='color:#e88' id='delClientBtn'>&#128465; Excluir</button></div>";html+="</div><div class='card-title' style='margin-bottom:12px'>DADOS PESSOAIS</div><div class='client-data-grid'>";[["Nascimento",c.nascimento],["CPF",c.cpf],["RG",c.rg],["Telefone",c.telefone],["Renda",c.renda],["CEP",c.cep],["Visto Americano",c.visto],["E-mail Gestao",c.emailGestao],["Problema",c.problema]].forEach(function(pair){html+="<div class='client-data-item'><label>"+pair[0]+"</label><span>"+esc(pair[1]||"--")+"</span></div>"});html+="</div>";if(c.endereco)html+="<div style='margin-top:12px'><label style='font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px'>Endereco</label><span style='font-size:14px;color:var(--text-primary)'>"+esc(c.endereco)+"</span></div>";if(c.obs)html+="<div class='card-title' style='margin-top:16px;margin-bottom:8px'>OBSERVACOES</div><div class='obs-box'>"+esc(c.obs)+"</div>";html+="</div>";el.innerHTML=html;var btns=el.querySelectorAll(".tab-btn");keys.forEach(function(k,i){if(btns[i])btns[i].onclick=function(){selectClient(k)}});if(isADM()&&btns[keys.length])btns[keys.length].onclick=openNewClientModal;if(document.getElementById("editClientBtn"))document.getElementById("editClientBtn").onclick=function(){openEditClientModal(currentClientKey)};if(document.getElementById("delClientBtn"))document.getElementById("delClientBtn").onclick=function(){deleteClient(currentClientKey)}}
 
-// ESTADO GLOBAL
-let currentUser  = null;
-let currentClientKey = null;
-let currentTab   = 'dashboard';
-let appData      = {};
-let sidebarOpen  = true;
+function renderSaldos(el){var clients=getVisibleClients(),keys=Object.keys(clients);if(!currentClientKey||!clients[currentClientKey])currentClientKey=keys[0]||null;var saldos=(appData.SALDOS||{})[currentClientKey]||[],total=saldos.reduce(function(s,i){return s+(Number(i.val)||0)},0);var html="<div class='section-title'>Saldos de Milhas</div><div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px'>";keys.forEach(function(k){html+="<button class='tab-btn"+(k===currentClientKey?" active":"")+"'>" +esc(clients[k].nome||k)+"</button>"});html+="</div><div style='margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px'><div><span style='font-size:13px;color:var(--text-muted)'>Total: </span><span style='font-size:22px;font-weight:700;color:var(--gold)'>"+fmtMiles(total)+"</span><span style='font-size:12px;color:var(--text-muted)'> pontos</span></div>";if(isADM())html+="<button class='btn-primary' style='font-size:12px;padding:8px 16px' id='addSaldoBtn'>+ Adicionar Programa</button>";html+="</div><div class='saldo-grid'>";if(saldos.length){saldos.forEach(function(s,idx){html+="<div class='saldo-card'><div class='saldo-prog'>"+esc(s.prog||"--")+"</div><div class='saldo-val'>"+(s.val!==null&&s.val!==undefined&&s.val!==""?fmtMiles(s.val):"--")+" <span>pts</span></div>";if(isADM())html+="<div style='position:absolute;top:8px;right:8px;display:flex;gap:4px'><button class='td-btn' data-idx='"+idx+"' data-action='edit'>&#9998;</button><button class='td-btn danger' data-idx='"+idx+"' data-action='del'>&#128465;</button></div>";html+="</div>"})}else{html+="<p style='color:var(--text-muted);font-size:13px'>Nenhum saldo.</p>"}html+="</div>";el.innerHTML=html;var tabBtns=el.querySelectorAll(".tab-btn");keys.forEach(function(k,i){if(tabBtns[i])tabBtns[i].onclick=function(){currentClientKey=k;renderCurrentTab()}});if(document.getElementById("addSaldoBtn"))document.getElementById("addSaldoBtn").onclick=function(){openNewSaldoModal(currentClientKey)};el.querySelectorAll("[data-action]").forEach(function(btn){var idx=parseInt(btn.dataset.idx);if(btn.dataset.action==="edit")btn.onclick=function(){openEditSaldoModal(currentClientKey,idx)};else btn.onclick=function(){deleteSaldo(currentClientKey,idx)}})}
+function renderProgramas(el){var progs=appData.PROGRAMAS||[];var html="<div class='section-title'>Programas de Fidelidade</div><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:20px'><span style='color:var(--text-muted);font-size:13px'>"+progs.length+" programas</span>";if(isADM())html+="<button class='btn-primary' style='font-size:12px;padding:8px 16px' id='addProgBtn'>+ Novo Programa</button>";html+="</div>";if(progs.length){html+="<div class='card'><div class='table-wrap'><table><thead><tr><th>Programa</th><th>Titular</th><th>Login</th><th>Clube</th><th>Saldo</th>"+(isADM()?"<th>Acoes</th>":"")+"</tr></thead><tbody>";progs.forEach(function(p,i){html+="<tr><td><b style='color:var(--text-primary)'>"+esc(p.prog||"")+"</b></td><td>"+esc(p.titular||"")+"</td><td style='font-size:11px;color:var(--text-muted)'>"+esc(p.login||"")+"</td><td>"+(p.clube?"<span class='badge badge-green'>"+esc(p.clube)+"</span>":"--")+"</td><td style='font-weight:600;color:var(--gold)'>"+fmtMiles(p.saldo)+"</td>"+(isADM()?"<td><div class='td-actions'><button class='td-btn' data-idx='"+i+"' data-act='e'>&#9998;</button><button class='td-btn danger' data-idx='"+i+"' data-act='d'>&#128465;</button></div></td>":"")+"</tr>"});html+="</tbody></table></div></div>"}else{html+="<p style='color:var(--text-muted)'>Nenhum programa.</p>"}el.innerHTML=html;if(document.getElementById("addProgBtn"))document.getElementById("addProgBtn").onclick=openNewProgModal;el.querySelectorAll("[data-act]").forEach(function(btn){var idx=parseInt(btn.dataset.idx);btn.onclick=btn.dataset.act==="e"?function(){openEditProgModal(idx)}:function(){deleteProg(idx)}})}
+function renderOps(el){var allOps=appData.OPS||[],ops=allOps.slice().reverse();var html="<div class='section-title'>Historico de Operacoes</div><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:20px'><span style='color:var(--text-muted);font-size:13px'>"+allOps.length+" operacoes</span>";if(isADM())html+="<button class='btn-primary' style='font-size:12px;padding:8px 16px' id='addOpBtn'>+ Nova Operacao</button>";html+="</div>";if(ops.length){html+="<div class='card'><div class='table-wrap'><table><thead><tr><th>Data</th><th>Operacao</th><th>Por</th><th>Resultado</th><th>Obs</th>"+(isADM()?"<th>Acoes</th>":"")+"</tr></thead><tbody>";ops.forEach(function(o,i){var realIdx=allOps.length-1-i;var resColor=o.res&&o.res.toLowerCase().indexOf("certo")>-1?"var(--green)":o.res&&o.res.toLowerCase().indexOf("pend")>-1?"var(--orange)":"var(--red)";html+="<tr><td style='white-space:nowrap'>"+esc(o.data||"")+"</td><td>"+esc(o.op||"")+"</td><td>"+esc(o.por||"")+"</td><td><span style='color:"+resColor+";font-size:12px'>"+esc(o.res||"")+"</span></td><td style='font-size:12px;color:var(--text-muted)'>"+esc(o.obs||"")+"</td>"+(isADM()?"<td><div class='td-actions'><button class='td-btn' data-idx='"+realIdx+"' data-act='e'>&#9998;</button><button class='td-btn danger' data-idx='"+realIdx+"' data-act='d'>&#128465;</button></div></td>":"")+"</tr>"});html+="</tbody></table></div></div>"}else{html+="<p style='color:var(--text-muted)'>Nenhuma operacao.</p>"}el.innerHTML=html;if(document.getElementById("addOpBtn"))document.getElementById("addOpBtn").onclick=openNewOpModal;el.querySelectorAll("[data-act]").forEach(function(btn){var idx=parseInt(btn.dataset.idx);btn.onclick=btn.dataset.act==="e"?function(){openEditOpModal(idx)}:function(){deleteOp(idx)}})}
+function renderViagens(el){var viagens=appData.VIAGENS||[];var html="<div class='section-title'>Viagens Planejadas</div><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:20px'><span style='color:var(--text-muted);font-size:13px'>"+viagens.length+" viagem(ns)</span>";if(isADM())html+="<button class='btn-primary' style='font-size:12px;padding:8px 16px' id='addViagemBtn'>+ Nova Viagem</button>";html+="</div>";viagens.forEach(function(v,i){html+="<div class='card'><div class='card-header'><div><div style='font-size:16px;font-weight:600;color:var(--text-primary)'>"+esc(v.origem||"")+" > "+esc(v.destino||"")+"</div><div style='font-size:12px;color:var(--text-muted);margin-top:2px'>"+esc(v.mes||"")+" &middot; "+(v.pax||0)+" pax &middot; "+esc(v.cabine||"")+"</div></div>";if(isADM())html+="<div style='display:flex;gap:6px'><button class='card-action' data-idx='"+i+"' data-act='e'>&#9998; Editar</button><button class='card-action' style='color:#e88' data-idx='"+i+"' data-act='d'>&#128465; Excluir</button></div>";html+="</div>"+(v.estrategia?"<div class='obs-box'>"+esc(v.estrategia)+"</div>":"")+"</div>"});if(!viagens.length)html+="<p style='color:var(--text-muted)'>Nenhuma viagem.</p>";el.innerHTML=html;if(document.getElementById("addViagemBtn"))document.getElementById("addViagemBtn").onclick=openNewViagemModal;el.querySelectorAll("[data-act]").forEach(function(btn){var idx=parseInt(btn.dataset.idx);btn.onclick=btn.dataset.act==="e"?function(){openEditViagemModal(idx)}:function(){deleteViagem(idx)}})}
+function renderCartoes(el){var cartoes=appData.CARDS||[];var html="<div class='section-title'>Cartoes de Credito</div><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:20px'><span style='color:var(--text-muted);font-size:13px'>"+cartoes.length+" cartao(oes)</span>";if(isADM())html+="<button class='btn-primary' style='font-size:12px;padding:8px 16px' id='addCartaoBtn'>+ Novo Cartao</button>";html+="</div>";if(cartoes.length){html+="<div class='card'><div class='table-wrap'><table><thead><tr><th>Cartao</th><th>Titular</th><th>Final</th><th>Programa</th><th>Anuidade</th>"+(isADM()?"<th>Acoes</th>":"")+"</tr></thead><tbody>";cartoes.forEach(function(c,i){html+="<tr><td><b style='color:var(--text-primary)'>"+esc(c.nome||"")+"</b></td><td>"+esc(c.titular||"")+"</td><td style='font-family:monospace'>&#9679;&#9679;&#9679;&#9679;"+esc(c.final||"")+"</td><td>"+esc(c.programa||"")+"</td><td>"+esc(c.anuidade||"")+"</td>"+(isADM()?"<td><div class='td-actions'><button class='td-btn' data-idx='"+i+"' data-act='e'>&#9998;</button><button class='td-btn danger' data-idx='"+i+"' data-act='d'>&#128465;</button></div></td>":"")+"</tr>"});html+="</tbody></table></div></div>"}else{html+="<p style='color:var(--text-muted)'>Nenhum cartao.</p>"}el.innerHTML=html;if(document.getElementById("addCartaoBtn"))document.getElementById("addCartaoBtn").onclick=openNewCartaoModal;el.querySelectorAll("[data-act]").forEach(function(btn){var idx=parseInt(btn.dataset.idx);btn.onclick=btn.dataset.act==="e"?function(){openEditCartaoModal(idx)}:function(){deleteCartao(idx)}})}
 
-// ========== UTILITÁRIOS ==========
-function isADM() {
-  return currentUser && (currentUser.role === 'ADM' || currentUser.role === 'EQUIPE');
-}
-function canEdit() {
-  return isADM();
-}
-function fmtMiles(n) {
-  if (!n && n !== 0) return '—';
-  return Number(n).toLocaleString('pt-BR');
-}
-function fmtNum(n) {
-  if (!n && n !== 0) return '—';
-  return Number(n).toLocaleString('pt-BR');
-}
-function showToast(msg, isError) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast' + (isError ? ' error' : '') + ' show';
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.className = 'toast', 3000);
-}
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-function openModal(id) {
-  document.getElementById(id).classList.add('open');
-}
-function esc(s) {
-  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+function openNewClientModal(){if(!canEdit()){showToast("Sem permissao",true);return}document.getElementById("clientModalTitle").textContent="Novo Cliente";document.getElementById("clientModalBody").innerHTML=buildClientForm(null,null);openModal("clientModal")}
+function openEditClientModal(key){if(!canEdit()){showToast("Sem permissao",true);return}var c=(appData.CLIENTES||{})[key]||{};document.getElementById("clientModalTitle").textContent="Editar Cliente";document.getElementById("clientModalBody").innerHTML=buildClientForm(key,c);openModal("clientModal")}
+function buildClientForm(key,c){var v=c||{};return"<div class='form-group'><label class='form-label'>Chave (ID unico)</label><input class='form-input' id='cf_key' value='"+esc(key||"")+"'  placeholder='ex: joao' "+(key?"readonly":"")+" /></div><div class='form-row'><div class='form-group'><label class='form-label'>Nome</label><input class='form-input' id='cf_nome' value='"+esc(v.nome||"")+"'></div><div class='form-group'><label class='form-label'>Nascimento</label><input class='form-input' id='cf_nasc' value='"+esc(v.nascimento||"")+"'></div></div><div class='form-row'><div class='form-group'><label class='form-label'>CPF</label><input class='form-input' id='cf_cpf' value='"+esc(v.cpf||"")+"'></div><div class='form-group'><label class='form-label'>RG</label><input class='form-input' id='cf_rg' value='"+esc(v.rg||"")+"'></div></div><div class='form-row'><div class='form-group'><label class='form-label'>Telefone</label><input class='form-input' id='cf_tel' value='"+esc(v.telefone||"")+"'></div><div class='form-group'><label class='form-label'>E-mail</label><input class='form-input' id='cf_email' value='"+esc(v.email||"")+"'></div></div><div class='form-row'><div class='form-group'><label class='form-label'>Renda</label><input class='form-input' id='cf_renda' value='"+esc(v.renda||"")+"'></div><div class='form-group'><label class='form-label'>Visto</label><input class='form-input' id='cf_visto' value='"+esc(v.visto||"")+"'></div></div><div class='form-group'><label class='form-label'>Endereco</label><input class='form-input' id='cf_end' value='"+esc(v.endereco||"")+"'></div><div class='form-row'><div class='form-group'><label class='form-label'>CEP</label><input class='form-input' id='cf_cep' value='"+esc(v.cep||"")+"'></div><div class='form-group'><label class='form-label'>E-mail Gestao</label><input class='form-input' id='cf_emailgest' value='"+esc(v.emailGestao||"")+"'></div></div><div class='form-group'><label class='form-label'>Problema?</label><input class='form-input' id='cf_prob' value='"+esc(v.problema||"Nao")+"'></div><div class='form-group'><label class='form-label'>Observacoes</label><textarea class='form-input' id='cf_obs' rows='3'>"+esc(v.obs||"")+"</textarea></div><div class='form-actions'><button class='btn-secondary' onclick='closeModal(\"clientModal\")'>Cancelar</button><button class='btn-primary' onclick='saveClient()'>Salvar</button></div>"}
+function saveClient(){if(!canEdit()){showToast("Sem permissao",true);return}var key=document.getElementById("cf_key").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");if(!key){showToast("Chave obrigatoria",true);return}if(!appData.CLIENTES)appData.CLIENTES={};appData.CLIENTES[key]={nome:document.getElementById("cf_nome").value.trim(),nascimento:document.getElementById("cf_nasc").value.trim(),cpf:document.getElementById("cf_cpf").value.trim(),rg:document.getElementById("cf_rg").value.trim(),telefone:document.getElementById("cf_tel").value.trim(),email:document.getElementById("cf_email").value.trim(),renda:document.getElementById("cf_renda").value.trim(),visto:document.getElementById("cf_visto").value.trim(),endereco:document.getElementById("cf_end").value.trim(),cep:document.getElementById("cf_cep").value.trim(),emailGestao:document.getElementById("cf_emailgest").value.trim(),problema:document.getElementById("cf_prob").value.trim(),obs:document.getElementById("cf_obs").value.trim()};currentClientKey=key;saveToStorage();closeModal("clientModal");if(isADM())renderSidebarClients();renderCurrentTab();showToast("Cliente salvo")}
+function deleteClient(key){if(!canEdit()){showToast("Sem permissao",true);return}if(!confirm("Excluir cliente "+key+"?"))return;delete appData.CLIENTES[key];if(appData.SALDOS)delete appData.SALDOS[key];var k=Object.keys(appData.CLIENTES||{});currentClientKey=k[0]||null;saveToStorage();if(isADM())renderSidebarClients();renderCurrentTab();showToast("Cliente excluido")}
+function openNewSaldoModal(ck){if(!canEdit()){showToast("Sem permissao",true);return}document.getElementById("genericModalTitle").textContent="Novo Saldo";document.getElementById("genericModalBody").innerHTML="<div class='form-group'><label class='form-label'>Programa</label><input class='form-input' id='sf_prog' placeholder='ex: Livelo'></div><div class='form-group'><label class='form-label'>Saldo (pontos)</label><input class='form-input' type='number' id='sf_val' placeholder='0'></div><div class='form-actions'><button class='btn-secondary' onclick='closeModal(\"genericModal\")'>Cancelar</button><button class='btn-primary' onclick='saveSaldo(\""+ck+"\",null)'>Salvar</button></div>";openModal("genericModal")}
+function openEditSaldoModal(ck,idx){if(!canEdit()){showToast("Sem permissao",true);return}var s=((appData.SALDOS||{})[ck]||[])[idx]||{};document.getElementById("genericModalTitle").textContent="Editar Saldo";document.getElementById("genericModalBody").innerHTML="<div class='form-group'><label class='form-label'>Programa</label><input class='form-input' id='sf_prog' value='"+esc(s.prog||"")+"'></div><div class='form-group'><label class='form-label'>Saldo (pontos)</label><input class='form-input' type='number' id='sf_val' value='"+(s.val||"")+"'></div><div class='form-actions'><button class='btn-secondary' onclick='closeModal(\"genericModal\")'>Cancelar</button><button class='btn-primary' onclick='saveSaldo(\""+ck+"\","+idx+")'>Salvar</button></div>";openModal("genericModal")}
+function saveSaldo(ck,idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!appData.SALDOS)appData.SALDOS={};if(!appData.SALDOS[ck])appData.SALDOS[ck]=[];var e={prog:document.getElementById("sf_prog").value.trim(),val:document.getElementById("sf_val").value?Number(document.getElementById("sf_val").value):null};if(idx===null)appData.SALDOS[ck].push(e);else appData.SALDOS[ck][idx]=e;saveToStorage();closeModal("genericModal");renderCurrentTab();showToast("Saldo salvo")}
+function deleteSaldo(ck,idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!confirm("Excluir este saldo?"))return;appData.SALDOS[ck].splice(idx,1);saveToStorage();renderCurrentTab();showToast("Saldo excluido")}
+function openNewOpModal(){if(!canEdit()){showToast("Sem permissao",true);return}document.getElementById("opModalTitle").textContent="Nova Operacao";document.getElementById("opModalBody").innerHTML=buildOpForm(null,null);openModal("opModal")}
+function openEditOpModal(idx){if(!canEdit()){showToast("Sem permissao",true);return}var o=(appData.OPS||[])[idx]||{};document.getElementById("opModalTitle").textContent="Editar Operacao";document.getElementById("opModalBody").innerHTML=buildOpForm(idx,o);openModal("opModal")}
+function buildOpForm(idx,o){var v=o||{},today=new Date().toLocaleDateString("pt-BR");return"<div class='form-row'><div class='form-group'><label class='form-label'>Data</label><input class='form-input' id='of_data' value='"+esc(v.data||today)+"'></div><div class='form-group'><label class='form-label'>Por</label><input class='form-input' id='of_por' value='"+esc(v.por||(currentUser?currentUser.name.split(" ")[0]:""))+"'></div></div><div class='form-group'><label class='form-label'>Operacao</label><textarea class='form-input' id='of_op' rows='2'>"+esc(v.op||"")+"</textarea></div><div class='form-group'><label class='form-label'>Resultado</label><input class='form-input' id='of_res' value='"+esc(v.res||"")+"' placeholder='deu certo / pendente / erro'></div><div class='form-group'><label class='form-label'>Observacoes</label><textarea class='form-input' id='of_obs' rows='2'>"+esc(v.obs||"")+"</textarea></div><div class='form-actions'><button class='btn-secondary' onclick='closeModal(\"opModal\")'>Cancelar</button><button class='btn-primary' onclick='saveOp("+(idx!==null?idx:"null")+")'>Salvar</button></div>"}
+function saveOp(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!appData.OPS)appData.OPS=[];var e={data:document.getElementById("of_data").value.trim(),op:document.getElementById("of_op").value.trim(),por:document.getElementById("of_por").value.trim(),res:document.getElementById("of_res").value.trim(),obs:document.getElementById("of_obs").value.trim()};if(idx===null)appData.OPS.push(e);else appData.OPS[idx]=e;saveToStorage();closeModal("opModal");renderCurrentTab();renderTabs();showToast("Operacao salva")}
+function deleteOp(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!confirm("Excluir esta operacao?"))return;appData.OPS.splice(idx,1);saveToStorage();renderCurrentTab();renderTabs();showToast("Operacao excluida")}
+function openNewProgModal(){if(!canEdit()){showToast("Sem permissao",true);return}document.getElementById("genericModalTitle").textContent="Novo Programa";document.getElementById("genericModalBody").innerHTML=buildProgForm(null,null);openModal("genericModal")}
+function openEditProgModal(idx){if(!canEdit()){showToast("Sem permissao",true);return}var p=(appData.PROGRAMAS||[])[idx]||{};document.getElementById("genericModalTitle").textContent="Editar Programa";document.getElementById("genericModalBody").innerHTML=buildProgForm(idx,p);openModal("genericModal")}
+function buildProgForm(idx,p){var v=p||{};return"<div class='form-row'><div class='form-group'><label class='form-label'>Programa</label><input class='form-input' id='pf_prog' value='"+esc(v.prog||"")+"'></div><div class='form-group'><label class='form-label'>Titular</label><input class='form-input' id='pf_tit' value='"+esc(v.titular||"")+"'></div></div><div class='form-group'><label class='form-label'>Login</label><input class='form-input' id='pf_login' value='"+esc(v.login||"")+"'></div><div class='form-row'><div class='form-group'><label class='form-label'>Clube</label><input class='form-input' id='pf_clube' value='"+esc(v.clube||"")+"'></div><div class='form-group'><label class='form-label'>Saldo</label><input class='form-input' type='number' id='pf_saldo' value='"+(v.saldo||"")+"'></div></div><div class='form-group'><label class='form-label'>Dados do Clube</label><textarea class='form-input' id='pf_clubedet' rows='2'>"+esc(v.clube_dados||"")+"</textarea></div><div class='form-actions'><button class='btn-secondary' onclick='closeModal(\"genericModal\")'>Cancelar</button><button class='btn-primary' onclick='saveProg("+(idx!==null?idx:"null")+")'>Salvar</button></div>"}
+function saveProg(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!appData.PROGRAMAS)appData.PROGRAMAS=[];var e={prog:document.getElementById("pf_prog").value.trim(),titular:document.getElementById("pf_tit").value.trim(),login:document.getElementById("pf_login").value.trim(),clube:document.getElementById("pf_clube").value.trim(),saldo:document.getElementById("pf_saldo").value?Number(document.getElementById("pf_saldo").value):null,clube_dados:document.getElementById("pf_clubedet").value.trim()};if(idx===null)appData.PROGRAMAS.push(e);else appData.PROGRAMAS[idx]=e;saveToStorage();closeModal("genericModal");renderCurrentTab();showToast("Programa salvo")}
+function deleteProg(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!confirm("Excluir este programa?"))return;appData.PROGRAMAS.splice(idx,1);saveToStorage();renderCurrentTab();showToast("Programa excluido")}
+function openNewViagemModal(){if(!canEdit()){showToast("Sem permissao",true);return}document.getElementById("genericModalTitle").textContent="Nova Viagem";document.getElementById("genericModalBody").innerHTML=buildViagemForm(null,null);openModal("genericModal")}
+function openEditViagemModal(idx){if(!canEdit()){showToast("Sem permissao",true);return}var v=(appData.VIAGENS||[])[idx]||{};document.getElementById("genericModalTitle").textContent="Editar Viagem";document.getElementById("genericModalBody").innerHTML=buildViagemForm(idx,v);openModal("genericModal")}
+function buildViagemForm(idx,v){var d=v||{};return"<div class='form-row'><div class='form-group'><label class='form-label'>Origem</label><input class='form-input' id='vf_orig' value='"+esc(d.origem||"")+"'></div><div class='form-group'><label class='form-label'>Destino</label><input class='form-input' id='vf_dest' value='"+esc(d.destino||"")+"'></div></div><div class='form-row'><div class='form-group'><label class='form-label'>Mes</label><input class='form-input' id='vf_mes' value='"+esc(d.mes||"")+"'></div><div class='form-group'><label class='form-label'>Pax</label><input class='form-input' type='number' id='vf_pax' value='"+(d.pax||"")+"'></div></div><div class='form-row'><div class='form-group'><label class='form-label'>Cabine</label><input class='form-input' id='vf_cab' value='"+esc(d.cabine||"")+"'></div><div class='form-group'><label class='form-label'>Hotel</label><input class='form-input' id='vf_hotel' value='"+esc(d.hotel||"")+"'></div></div><div class='form-group'><label class='form-label'>Estrategia / Obs</label><textarea class='form-input' id='vf_est' rows='2'>"+esc(d.estrategia||"")+"</textarea></div><div class='form-actions'><button class='btn-secondary' onclick='closeModal(\"genericModal\")'>Cancelar</button><button class='btn-primary' onclick='saveViagem("+(idx!==null?idx:"null")+")'>Salvar</button></div>"}
+function saveViagem(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!appData.VIAGENS)appData.VIAGENS=[];var e={origem:document.getElementById("vf_orig").value.trim(),destino:document.getElementById("vf_dest").value.trim(),mes:document.getElementById("vf_mes").value.trim(),pax:Number(document.getElementById("vf_pax").value)||0,cabine:document.getElementById("vf_cab").value.trim(),hotel:document.getElementById("vf_hotel").value.trim(),estrategia:document.getElementById("vf_est").value.trim()};if(idx===null)appData.VIAGENS.push(e);else appData.VIAGENS[idx]=e;saveToStorage();closeModal("genericModal");renderCurrentTab();showToast("Viagem salva")}
+function deleteViagem(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!confirm("Excluir esta viagem?"))return;appData.VIAGENS.splice(idx,1);saveToStorage();renderCurrentTab();showToast("Viagem excluida")}
+function openNewCartaoModal(){if(!canEdit()){showToast("Sem permissao",true);return}document.getElementById("genericModalTitle").textContent="Novo Cartao";document.getElementById("genericModalBody").innerHTML=buildCartaoForm(null,null);openModal("genericModal")}
+function openEditCartaoModal(idx){if(!canEdit()){showToast("Sem permissao",true);return}var c=(appData.CARDS||[])[idx]||{};document.getElementById("genericModalTitle").textContent="Editar Cartao";document.getElementById("genericModalBody").innerHTML=buildCartaoForm(idx,c);openModal("genericModal")}
+function buildCartaoForm(idx,c){var v=c||{};return"<div class='form-row'><div class='form-group'><label class='form-label'>Nome do Cartao</label><input class='form-input' id='ctf_nome' value='"+esc(v.nome||"")+"'></div><div class='form-group'><label class='form-label'>Titular</label><input class='form-input' id='ctf_tit' value='"+esc(v.titular||"")+"'></div></div><div class='form-row'><div class='form-group'><label class='form-label'>Final (4 digitos)</label><input class='form-input' id='ctf_fin' value='"+esc(v.final||"")+"' maxlength='4'></div><div class='form-group'><label class='form-label'>Programa</label><input class='form-input' id='ctf_prog' value='"+esc(v.programa||"")+"'></div></div><div class='form-group'><label class='form-label'>Anuidade</label><input class='form-input' id='ctf_anu' value='"+esc(v.anuidade||"")+"'></div><div class='form-actions'><button class='btn-secondary' onclick='closeModal(\"genericModal\")'>Cancelar</button><button class='btn-primary' onclick='saveCartao("+(idx!==null?idx:"null")+")'>Salvar</button></div>"}
+function saveCartao(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!appData.CARDS)appData.CARDS=[];var e={nome:document.getElementById("ctf_nome").value.trim(),titular:document.getElementById("ctf_tit").value.trim(),final:document.getElementById("ctf_fin").value.trim(),programa:document.getElementById("ctf_prog").value.trim(),anuidade:document.getElementById("ctf_anu").value.trim()};if(idx===null)appData.CARDS.push(e);else appData.CARDS[idx]=e;saveToStorage();closeModal("genericModal");renderCurrentTab();showToast("Cartao salvo")}
+function deleteCartao(idx){if(!canEdit()){showToast("Sem permissao",true);return}if(!confirm("Excluir este cartao?"))return;appData.CARDS.splice(idx,1);saveToStorage();renderCurrentTab();showToast("Cartao excluido")}
+document.addEventListener("DOMContentLoaded",function(){renderRecentEmails();var emailEl=document.getElementById("loginEmail");var passEl=document.getElementById("loginPass");if(emailEl)emailEl.addEventListener("keydown",function(e){if(e.key==="Enter")passEl.focus()});if(passEl)passEl.addEventListener("keydown",function(e){if(e.key==="Enter")doLogin()});document.querySelectorAll(".modal-overlay").forEach(function(o){o.addEventListener("click",function(e){if(e.target===o)o.classList.remove("open")})});window.addEventListener("resize",function(){if(currentUser&&isADM()){var s=document.getElementById("sidebar");if(window.innerWidth>768){s.classList.remove("collapsed");document.getElementById("sidebarOverlay").classList.remove("show")}}})});
 
-// ========== PERSISTÊNCIA ==========
-function saveToStorage() {
-  try {
-    appData.savedAt = new Date().toISOString();
-    appData.savedBy = currentUser ? currentUser.email : 'system';
-    appData.version = 2;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
-    // Salva snapshot no histórico
-    const hist = JSON.parse(localStorage.getItem(STORAGE_HIST) || '[]');
-    hist.unshift({ ts: appData.savedAt, by: appData.savedBy, snap: JSON.stringify(appData) });
-    if (hist.length > 10) hist.length = 10;
-    localStorage.setItem(STORAGE_HIST, JSON.stringify(hist));
-    showToast('✓ Dados salvos com sucesso');
-  } catch(e) {
-    showToast('Erro ao salvar: ' + e.message, true);
-  }
-}
-function loadFromStorage() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      appData = JSON.parse(raw);
-    } else {
-      appData = getDefaultData();
-    }
-  } catch(e) {
-    appData = getDefaultData();
-  }
-}
-function getDefaultData() {
-  return {
-    version: 2,
-    CLIENTES: {},
-    SALDOS: {},
-    PROGRAMAS: [],
-    OPS: [],
-    VIAGENS: [],
-    CARDS: [],
-    savedAt: null,
-    savedBy: null
-  };
-}
-function getVisibleClients() {
-  if (!appData.CLIENTES) return {};
-  if (isADM() || !currentUser.clientKeys) return appData.CLIENTES;
-  const visible = {};
-  (currentUser.clientKeys || []).forEach(k => {
-    if (appData.CLIENTES[k]) visible[k] = appData.CLIENTES[k];
-  });
-  return visible;
-}
-
-// ========== EXPORTAÇÃO (SALVAR COMO) ==========
-function showExportModal() {
-  openModal('exportModal');
-}
-function exportFullJSON() {
-  const blob = new Blob([JSON.stringify(appData, null, 2)], {type: 'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  const d = new Date().toISOString().slice(0,10);
-  a.download = 'dvmilhas-backup-' + d + '.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  closeModal('exportModal');
-  showToast('✓ JSON exportado');
-}
-function exportClientJSON() {
-  if (!currentClientKey || !appData.CLIENTES?.[currentClientKey]) {
-    showToast('Selecione um cliente primeiro', true); return;
-  }
-  const clientData = {
-    cliente: appData.CLIENTES[currentClientKey],
-    saldos: appData.SALDOS?.[currentClientKey] || [],
-    exportedAt: new Date().toISOString()
-  };
-  const blob = new Blob([JSON.stringify(clientData, null, 2)], {type: 'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'cliente-' + currentClientKey + '-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  closeModal('exportModal');
-  showToast('✓ Cliente exportado');
-}
-function exportOpsCSV() {
-  const ops = appData.OPS || [];
-  if (!ops.length) { showToast('Nenhuma operação para exportar', true); return; }
-  const header = ['Data','Operação','Por','Resultado','Obs'];
-  const rows = ops.map(o => [o.data||'',o.op||'',o.por||'',o.res||'',o.obs||''].map(v => '"'+String(v).replace(/"/g,'""')+'"').join(','));
-  const csv = [header.join(','), ...rows].join('
-');
-  const blob = new Blob(['﻿' + csv], {type: 'text/csv;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'operacoes-' + new Date().toISOString().slice(0,10) + '.csv';
-  a.click();
-  URL.revokeObjectURL(url);
-  closeModal('exportModal');
-  showToast('✓ CSV exportado');
-}
-function duplicateCurrentData() {
-  saveToStorage();
-  closeModal('exportModal');
-  showToast('✓ Snapshot salvo no histórico');
-}
-function importBackupJSON() {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = '.json';
-  input.onchange = e => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      try {
-        const parsed = JSON.parse(ev.target.result);
-        if (!parsed.CLIENTES && !parsed.OPS) throw new Error('Formato inválido');
-        if (!confirm('Restaurar este backup? Os dados atuais serão substituídos.')) return;
-        appData = parsed;
-        saveToStorage();
-        initApp();
-        showToast('✓ Backup restaurado');
-      } catch(err) {
-        showToast('Erro ao ler backup: ' + err.message, true);
-      }
-    };
-    reader.readAsText(file);
-  };
-  input.click();
-}
-
-// ========== LOGIN ==========
-const RECENT_MAX = 5;
-function getRecentEmails() {
-  try { return JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); } catch { return []; }
-}
-function saveRecentEmail(email) {
-  let arr = getRecentEmails().filter(e => e !== email);
-  arr.unshift(email);
-  if (arr.length > RECENT_MAX) arr.length = RECENT_MAX;
-  localStorage.setItem(RECENT_KEY, JSON.stringify(arr));
-}
-function renderRecentEmails() {
-  const arr = getRecentEmails();
-  const box = document.getElementById('recentBox');
-  const list = document.getElementById('recentList');
-  if (!arr.length) { box.style.display = 'none'; return; }
-  box.style.display = '';
-  list.innerHTML = arr.map(e => `<button class="recent-email-btn" onclick="selectEmail('${esc(e)}')">${esc(e)}</button>`).join('');
-}
-function selectEmail(email) {
-  document.getElementById('loginEmail').value = email;
-  document.getElementById('loginPass').focus();
-}
-function togglePassword() {
-  const inp = document.getElementById('loginPass');
-  const btn = document.getElementById('eyeBtn');
-  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
-  else { inp.type = 'password'; btn.textContent = '👁'; }
-}
-function doLogin() {
-  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-  const pass  = document.getElementById('loginPass').value;
-  const errEl = document.getElementById('loginError');
-  errEl.style.display = 'none';
-  const user = SYSTEM_USERS.find(u => u.email.toLowerCase() === email && u.password === pass);
-  if (!user) {
-    errEl.style.display = '';
-    errEl.textContent = 'E-mail ou senha incorretos.';
-    return;
-  }
-  currentUser = user;
-  saveRecentEmail(email);
-  loadFromStorage();
-  initApp();
-}
-function doLogout() {
-  if (canEdit()) saveToStorage();
-  currentUser = null;
-  currentClientKey = null;
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginEmail').value = '';
-  document.getElementById('loginPass').value = '';
-  document.getElementById('loginPass').type = 'password';
-  document.getElementById('eyeBtn').textContent = '👁';
-  renderRecentEmails();
-}
-
-// ========== INICIALIZAÇÃO ==========
-function initApp() {
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-
-  // Badge do usuário
-  const dot = document.getElementById('roleDot');
-  const name = document.getElementById('userBadgeName');
-  name.textContent = currentUser.name.split(' ')[0];
-  dot.className = 'role-dot' + (isADM() ? '' : ' client');
-
-  // Readonly banner
-  const banner = document.getElementById('readonlyBanner');
-  banner.style.display = isADM() ? 'none' : 'block';
-
-  // Botões de edição: ocultar para clientes
-  document.getElementById('btnSave').style.display = canEdit() ? '' : 'none';
-  document.getElementById('btnExport').style.display = canEdit() ? '' : 'none';
-
-  // Sidebar: somente ADM
-  const sidebar = document.getElementById('sidebar');
-  if (isADM()) {
-    sidebar.style.display = 'flex';
-    sidebarOpen = window.innerWidth > 768;
-    if (!sidebarOpen) sidebar.classList.add('collapsed');
-    else sidebar.classList.remove('collapsed');
-    document.getElementById('sidebarToggle').style.display = 'flex';
-    renderSidebarClients();
-  } else {
-    sidebar.style.display = 'none';
-    document.getElementById('sidebarToggle').style.display = 'none';
-  }
-
-  // Selecionar primeiro cliente
-  const clients = getVisibleClients();
-  const keys = Object.keys(clients);
-  if (keys.length > 0) {
-    currentClientKey = keys[0];
-  }
-
-  renderTabs();
-  renderCurrentTab();
-
-  // Auto-save a cada 5 min se ADM
-  if (canEdit()) {
-    clearInterval(window._autoSave);
-    window._autoSave = setInterval(() => saveToStorage(), 5 * 60 * 1000);
-  }
-}
-
-// ========== SIDEBAR ==========
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  if (sidebar.classList.contains('collapsed')) {
-    sidebar.classList.remove('collapsed');
-    if (window.innerWidth <= 768) overlay.classList.add('show');
-    sidebarOpen = true;
-  } else {
-    sidebar.classList.add('collapsed');
-    overlay.classList.remove('show');
-    sidebarOpen = false;
-  }
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.add('collapsed');
-  document.getElementById('sidebarOverlay').classList.remove('show');
-  sidebarOpen = false;
-}
-function renderSidebarClients(filter) {
-  const clients = appData.CLIENTES || {};
-  const list = document.getElementById('sidebarClientList');
-  let keys = Object.keys(clients);
-  if (filter) keys = keys.filter(k => {
-    const c = clients[k];
-    const q = filter.toLowerCase();
-    return k.toLowerCase().includes(q) ||
-      (c.nome||'').toLowerCase().includes(q) ||
-      (c.email||'').toLowerCase().includes(q);
-  });
-  if (!keys.length) {
-    list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:12px">Nenhum cliente</div>';
-    return;
-  }
-  list.innerHTML = keys.map(k => {
-    const c = clients[k];
-    const isActive = k === currentClientKey;
-    const inicial = (c.nome||k).charAt(0).toUpperCase();
-    return `<div class="sidebar-client-item${isActive ? ' active' : ''}" onclick="selectClient('${esc(k)}')">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:32px;height:32px;border-radius:50%;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.3);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--gold);flex-shrink:0">${inicial}</div>
-        <div style="min-width:0">
-          <div class="sidebar-client-name">${esc(c.nome||k)}</div>
-          <div class="sidebar-client-email">${esc(c.email||'')}</div>
-          <div class="sidebar-client-key">key: ${k}</div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-function filterSidebarClients(val) {
-  renderSidebarClients(val || undefined);
-}
-function selectClient(key) {
-  currentClientKey = key;
-  // Fechar sidebar no mobile
-  if (window.innerWidth <= 768) closeSidebar();
-  renderSidebarClients(document.getElementById('sidebarSearch')?.value);
-  // Ir para aba de clientes se não for dashboard
-  if (currentTab !== 'dashboard') currentTab = 'clientes';
-  renderTabs();
-  renderCurrentTab();
-}
-
-// ========== TABS ==========
-function getTabsConfig() {
-  const base = [
-    { id: 'dashboard', label: '🏠 Dashboard' },
-    { id: 'clientes',  label: '👤 Dados Pessoais' },
-    { id: 'saldos',    label: '✈️ Saldos' },
-    { id: 'programas', label: '⭐ Programas' },
-    { id: 'ops',       label: '📋 Operações' },
-    { id: 'viagens',   label: '🌍 Viagens' },
-    { id: 'cartoes',   label: '💳 Cartões' },
-  ];
-  return base;
-}
-function renderTabs() {
-  const tabs = getTabsConfig();
-  const bar = document.getElementById('tabsBar');
-  const ops = appData.OPS || [];
-  const pending = ops.filter(o => o.res && o.res.toLowerCase().includes('pend')).length;
-  bar.innerHTML = tabs.map(t => {
-    let badge = '';
-    if (t.id === 'ops' && pending > 0) badge = `<span class="tab-badge">${pending}</span>`;
-    return `<button class="tab-btn${currentTab === t.id ? ' active' : ''}" onclick="nav('${t.id}')">${t.label}${badge}</button>`;
-  }).join('');
-}
-function nav(tab) {
-  currentTab = tab;
-  renderTabs();
-  renderCurrentTab();
-}
-function renderCurrentTab() {
-  const content = document.getElementById('mainContent');
-  switch(currentTab) {
-    case 'dashboard': renderDashboard(content); break;
-    case 'clientes':  renderClientes(content); break;
-    case 'saldos':    renderSaldos(content); break;
-    case 'programas': renderProgramas(content); break;
-    case 'ops':       renderOps(content); break;
-    case 'viagens':   renderViagens(content); break;
-    case 'cartoes':   renderCartoes(content); break;
-    default: content.innerHTML = '<p style="color:var(--text-muted)">Seção em breve</p>';
-  }
-}
-
-
-// ========== DASHBOARD ==========
-function renderDashboard(el) {
-  const clients = getVisibleClients();
-  const clientNames = Object.values(clients).map(c => c.nome || '?').join(', ');
-  const ops = appData.OPS || [];
-  const pending = ops.filter(o => o.res && o.res.toLowerCase().includes('pend')).length;
-  const saldos = appData.SALDOS || {};
-  let totalMiles = 0;
-  Object.values(saldos).forEach(arr => {
-    (arr || []).forEach(s => { if (s.val) totalMiles += Number(s.val) || 0; });
-  });
-  const prog = appData.PROGRAMAS || [];
-  const viagens = appData.VIAGENS || [];
-
-  el.innerHTML = `
-    <div class="section-title">Dashboard Executivo</div>
-    <div class="section-sub">Visão geral · ${new Date().toLocaleDateString('pt-BR',{dateStyle:'long'})}</div>
-    <div class="dash-grid">
-      <div class="dash-card" onclick="nav('clientes')">
-        <div class="dash-card-icon">👥</div>
-        <div class="dash-card-label">Clientes Cadastrados</div>
-        <div class="dash-card-value">${Object.keys(clients).length}</div>
-        <div class="dash-card-sub">${clientNames}</div>
-      </div>
-      <div class="dash-card" onclick="nav('saldos')">
-        <div class="dash-card-icon">✈️</div>
-        <div class="dash-card-label">Total Pontos/Milhas</div>
-        <div class="dash-card-value">${totalMiles >= 1000000 ? (totalMiles/1000000).toFixed(2)+'M' : fmtMiles(totalMiles)}</div>
-        <div class="dash-card-sub">Todos os programas</div>
-      </div>
-      <div class="dash-card" onclick="nav('ops')">
-        <div class="dash-card-icon">🔄</div>
-        <div class="dash-card-label">Operações Registradas</div>
-        <div class="dash-card-value">${ops.length}</div>
-        <div class="dash-card-sub" style="color:${pending ? 'var(--orange)' : 'var(--text-muted)'}">
-          ${pending ? '⚠ ' + pending + ' pendente(s)' : 'Sem pendências'}
-        </div>
-      </div>
-      <div class="dash-card" onclick="nav('viagens')">
-        <div class="dash-card-icon">🌍</div>
-        <div class="dash-card-label">Viagens Planejadas</div>
-        <div class="dash-card-value">${viagens.length}</div>
-        <div class="dash-card-sub">${viagens[0] ? viagens[0].origem + ' → ' + viagens[0].destino : 'Nenhuma cadastrada'}</div>
-      </div>
-    </div>
-    ${isADM() ? `
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">Resumo de Saldos por Cliente</span>
-      </div>
-      <div class="saldo-grid">
-        ${Object.entries(saldos).map(([key, arr]) => {
-          const client = clients[key];
-          const total = (arr||[]).reduce((s,i) => s + (Number(i.val)||0), 0);
-          return `<div class="saldo-card" onclick="currentClientKey='${esc(key)}';nav('saldos')">
-            <div class="saldo-prog">${esc(client?.nome || key)}</div>
-            <div class="saldo-val">${total>=1000000?(total/1000000).toFixed(2)+'M':fmtMiles(total)} <span>pts</span></div>
-            <div style="font-size:11px;color:var(--text-muted);margin-top:4px">${(arr||[]).filter(s=>s.val).length} programas ativos</div>
-          </div>`;
-        }).join('')}
-      </div>
-    </div>
-    ` : ''}
-    ${appData.savedAt ? `<div style="text-align:right;font-size:11px;color:var(--text-muted);margin-top:8px">Último save: ${new Date(appData.savedAt).toLocaleString('pt-BR')}</div>` : ''}
-  `;
-}
-
-// ========== CLIENTES ==========
-function renderClientes(el) {
-  const clients = getVisibleClients();
-  const keys = Object.keys(clients);
-  if (!currentClientKey || !clients[currentClientKey]) {
-    currentClientKey = keys[0] || null;
-  }
-
-  // Tabs de seleção de cliente
-  const clientTabs = keys.map(k => {
-    const c = clients[k];
-    return `<button class="tab-btn${k === currentClientKey ? ' active' : ''}" onclick="selectClient('${esc(k)}')">${esc(c.nome || k)}</button>`;
-  }).join('');
-
-  if (!currentClientKey || !clients[currentClientKey]) {
-    el.innerHTML = `<div class="section-title">Dados Pessoais</div>
-      ${isADM() ? `<div style="margin-top:20px"><button class="btn-primary" onclick="openNewClientModal()">+ Novo Cliente</button></div>` : ''}
-      <p style="color:var(--text-muted);margin-top:20px">Nenhum cliente cadastrado.</p>`;
-    return;
-  }
-
-  const c = clients[currentClientKey];
-  const inicial = (c.nome||currentClientKey).charAt(0).toUpperCase();
-
-  el.innerHTML = `
-    <div class="section-title">Dados Pessoais</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
-      ${clientTabs}
-      ${isADM() ? `<button class="tab-btn" onclick="openNewClientModal()">+ Novo</button>` : ''}
-    </div>
-    <div class="client-profile">
-      <div class="client-profile-header">
-        <div class="client-avatar">${inicial}</div>
-        <div>
-          <div class="client-profile-name">${esc(c.nome || currentClientKey)}</div>
-          <div class="client-profile-email">${esc(c.email || '')}</div>
-        </div>
-        ${isADM() ? `<div style="margin-left:auto;display:flex;gap:8px">
-          <button class="card-action" onclick="openEditClientModal('${esc(currentClientKey)}')">✎ Editar</button>
-          <button class="card-action" style="color:#e88" onclick="deleteClient('${esc(currentClientKey)}')">🗑 Excluir</button>
-        </div>` : ''}
-      </div>
-      <div class="card-title" style="margin-bottom:12px">DADOS PESSOAIS</div>
-      <div class="client-data-grid">
-        ${[
-          ['Nascimento', c.nascimento],
-          ['CPF', c.cpf],
-          ['RG', c.rg],
-          ['Telefone', c.telefone],
-          ['Renda', c.renda],
-          ['CEP', c.cep],
-          ['Visto Americano', c.visto],
-          ['E-mail Gestão', c.emailGestao],
-          ['Problema', c.problema],
-        ].map(([l,v]) => `<div class="client-data-item"><label>${l}</label><span>${esc(v||'—')}</span></div>`).join('')}
-      </div>
-      ${c.endereco ? `<div style="margin-top:12px"><label style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px">Endereço</label><span style="font-size:14px;color:var(--text-primary)">${esc(c.endereco)}</span></div>` : ''}
-      ${c.obs ? `<div class="card-title" style="margin-top:16px;margin-bottom:8px">OBSERVAÇÕES</div><div class="obs-box">${esc(c.obs)}</div>` : ''}
-    </div>
-  `;
-}
-
-// ========== SALDOS ==========
-function renderSaldos(el) {
-  const clients = getVisibleClients();
-  const keys = Object.keys(clients);
-  if (!currentClientKey || !clients[currentClientKey]) currentClientKey = keys[0] || null;
-
-  const clientTabs = keys.map(k => {
-    const c = clients[k];
-    return `<button class="tab-btn${k === currentClientKey ? ' active' : ''}" onclick="currentClientKey='${esc(k)}';renderCurrentTab()">${esc(c.nome || k)}</button>`;
-  }).join('');
-
-  const saldosCliente = (appData.SALDOS || {})[currentClientKey] || [];
-  const total = saldosCliente.reduce((s, i) => s + (Number(i.val) || 0), 0);
-
-  el.innerHTML = `
-    <div class="section-title">Saldos de Milhas</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">${clientTabs}</div>
-    <div style="margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-      <div>
-        <span style="font-size:13px;color:var(--text-muted)">Total: </span>
-        <span style="font-size:22px;font-weight:700;color:var(--gold)">${fmtMiles(total)}</span>
-        <span style="font-size:12px;color:var(--text-muted)"> pontos</span>
-      </div>
-      ${isADM() ? `<button class="btn-primary" style="font-size:12px;padding:8px 16px" onclick="openNewSaldoModal('${esc(currentClientKey)}')">+ Adicionar Programa</button>` : ''}
-    </div>
-    <div class="saldo-grid">
-      ${saldosCliente.map((s, idx) => `
-        <div class="saldo-card" style="position:relative">
-          <div class="saldo-prog">${esc(s.prog || '—')}</div>
-          <div class="saldo-val">${s.val !== null && s.val !== undefined && s.val !== '' ? fmtMiles(s.val) : '—'} <span>pts</span></div>
-          ${isADM() ? `<div style="position:absolute;top:8px;right:8px;display:flex;gap:4px">
-            <button class="td-btn" onclick="openEditSaldoModal('${esc(currentClientKey)}',${idx})">✎</button>
-            <button class="td-btn danger" onclick="deleteSaldo('${esc(currentClientKey)}',${idx})">🗑</button>
-          </div>` : ''}
-        </div>
-      `).join('') || '<p style="color:var(--text-muted);font-size:13px">Nenhum saldo cadastrado.</p>'}
-    </div>
-  `;
-}
-
-
-// ========== PROGRAMAS ==========
-function renderProgramas(el) {
-  const progs = appData.PROGRAMAS || [];
-  el.innerHTML = `
-    <div class="section-title">Programas de Fidelidade</div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <span style="color:var(--text-muted);font-size:13px">${progs.length} programas cadastrados</span>
-      ${isADM() ? `<button class="btn-primary" style="font-size:12px;padding:8px 16px" onclick="openNewProgModal()">+ Novo Programa</button>` : ''}
-    </div>
-    ${progs.length ? `
-    <div class="card">
-      <div class="table-wrap">
-        <table>
-          <thead><tr>
-            <th>Programa</th><th>Titular</th><th>Login</th><th>Clube</th><th>Saldo</th>
-            ${isADM() ? '<th>Ações</th>' : ''}
-          </tr></thead>
-          <tbody>
-            ${progs.map((p, i) => `<tr>
-              <td><b style="color:var(--text-primary)">${esc(p.prog||'')}</b></td>
-              <td>${esc(p.titular||'')}</td>
-              <td><span style="font-size:11px;color:var(--text-muted)">${esc(p.login||'')}</span></td>
-              <td>${p.clube ? `<span class="badge badge-green">${esc(p.clube)}</span>` : '—'}</td>
-              <td style="font-weight:600;color:var(--gold)">${p.saldo ? fmtMiles(p.saldo) : '—'}</td>
-              ${isADM() ? `<td><div class="td-actions">
-                <button class="td-btn" onclick="openEditProgModal(${i})">✎</button>
-                <button class="td-btn danger" onclick="deleteProg(${i})">🗑</button>
-              </div></td>` : ''}
-            </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>` : `<p style="color:var(--text-muted);font-size:13px">Nenhum programa cadastrado.</p>`}
-  `;
-}
-
-// ========== OPERAÇÕES ==========
-function renderOps(el) {
-  const ops = [...(appData.OPS || [])].reverse();
-  el.innerHTML = `
-    <div class="section-title">Histórico de Operações</div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <span style="color:var(--text-muted);font-size:13px">${ops.length} operações registradas</span>
-      ${isADM() ? `<button class="btn-primary" style="font-size:12px;padding:8px 16px" onclick="openNewOpModal()">+ Nova Operação</button>` : ''}
-    </div>
-    ${ops.length ? `
-    <div class="card">
-      <div class="table-wrap">
-        <table>
-          <thead><tr>
-            <th>Data</th><th>Operação</th><th>Por</th><th>Resultado</th><th>Obs</th>
-            ${isADM() ? '<th>Ações</th>' : ''}
-          </tr></thead>
-          <tbody>
-            ${ops.map((o, i) => {
-              const realIdx = (appData.OPS||[]).length - 1 - i;
-              const resColor = o.res && o.res.toLowerCase().includes('certo') ? 'var(--green)' :
-                               o.res && o.res.toLowerCase().includes('pend') ? 'var(--orange)' : 'var(--red)';
-              return `<tr>
-                <td style="white-space:nowrap">${esc(o.data||'')}</td>
-                <td style="max-width:200px">${esc(o.op||'')}</td>
-                <td>${esc(o.por||'')}</td>
-                <td><span style="color:${resColor};font-size:12px">${esc(o.res||'')}</span></td>
-                <td style="max-width:200px;font-size:12px;color:var(--text-muted)">${esc(o.obs||'')}</td>
-                ${isADM() ? `<td><div class="td-actions">
-                  <button class="td-btn" onclick="openEditOpModal(${realIdx})">✎</button>
-                  <button class="td-btn danger" onclick="deleteOp(${realIdx})">🗑</button>
-                </div></td>` : ''}
-              </tr>`;
-            }).join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>` : `<p style="color:var(--text-muted);font-size:13px">Nenhuma operação registrada.</p>`}
-  `;
-}
-
-// ========== VIAGENS ==========
-function renderViagens(el) {
-  const viagens = appData.VIAGENS || [];
-  el.innerHTML = `
-    <div class="section-title">Viagens Planejadas</div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <span style="color:var(--text-muted);font-size:13px">${viagens.length} viagem(ns) planejada(s)</span>
-      ${isADM() ? `<button class="btn-primary" style="font-size:12px;padding:8px 16px" onclick="openNewViagemModal()">+ Nova Viagem</button>` : ''}
-    </div>
-    ${viagens.map((v, i) => `
-    <div class="card" style="margin-bottom:16px">
-      <div class="card-header">
-        <div>
-          <div style="font-size:16px;font-weight:600;color:var(--text-primary)">${esc(v.origem||'')} → ${esc(v.destino||'')}</div>
-          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">${esc(v.mes||'')} · ${v.pax||0} pax · ${esc(v.cabine||'')}</div>
-        </div>
-        ${isADM() ? `<div style="display:flex;gap:6px">
-          <button class="card-action" onclick="openEditViagemModal(${i})">✎ Editar</button>
-          <button class="card-action" style="color:#e88" onclick="deleteViagem(${i})">🗑 Excluir</button>
-        </div>` : ''}
-      </div>
-      ${v.estrategia ? `<div class="obs-box" style="margin-top:0">${esc(v.estrategia)}</div>` : ''}
-    </div>`).join('') || `<p style="color:var(--text-muted);font-size:13px">Nenhuma viagem planejada.</p>`}
-  `;
-}
-
-// ========== CARTÕES ==========
-function renderCartoes(el) {
-  const cartoes = appData.CARDS || [];
-  el.innerHTML = `
-    <div class="section-title">Cartões de Crédito</div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <span style="color:var(--text-muted);font-size:13px">${cartoes.length} cartão(ões) cadastrado(s)</span>
-      ${isADM() ? `<button class="btn-primary" style="font-size:12px;padding:8px 16px" onclick="openNewCartaoModal()">+ Novo Cartão</button>` : ''}
-    </div>
-    ${cartoes.length ? `
-    <div class="card">
-      <div class="table-wrap">
-        <table>
-          <thead><tr>
-            <th>Cartão</th><th>Titular</th><th>Final</th><th>Programa</th><th>Anuidade</th>
-            ${isADM() ? '<th>Ações</th>' : ''}
-          </tr></thead>
-          <tbody>
-            ${cartoes.map((c, i) => `<tr>
-              <td><b style="color:var(--text-primary)">${esc(c.nome||'')}</b></td>
-              <td>${esc(c.titular||'')}</td>
-              <td style="font-family:monospace">····${esc(c.final||'')}</td>
-              <td>${esc(c.programa||'')}</td>
-              <td>${esc(c.anuidade||'')}</td>
-              ${isADM() ? `<td><div class="td-actions">
-                <button class="td-btn" onclick="openEditCartaoModal(${i})">✎</button>
-                <button class="td-btn danger" onclick="deleteCartao(${i})">🗑</button>
-              </div></td>` : ''}
-            </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>` : `<p style="color:var(--text-muted);font-size:13px">Nenhum cartão cadastrado.</p>`}
-  `;
-}
-
-
-// ========== CRUD: CLIENTES ==========
-function openNewClientModal() {
-  if (!canEdit()) { showToast('Sem permissão de edição', true); return; }
-  const body = document.getElementById('clientModalBody');
-  document.getElementById('clientModalTitle').textContent = 'Novo Cliente';
-  body.innerHTML = buildClientForm(null, null);
-  openModal('clientModal');
-}
-function openEditClientModal(key) {
-  if (!canEdit()) { showToast('Sem permissão de edição', true); return; }
-  const c = (appData.CLIENTES||{})[key] || {};
-  const body = document.getElementById('clientModalBody');
-  document.getElementById('clientModalTitle').textContent = 'Editar Cliente';
-  body.innerHTML = buildClientForm(key, c);
-  openModal('clientModal');
-}
-function buildClientForm(key, c) {
-  const v = c || {};
-  return `
-    <div class="form-group"><label class="form-label">Chave (ID único)</label>
-      <input class="form-input" id="cf_key" value="${esc(key||'')}" placeholder="ex: joao" ${key?'readonly':''}>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Nome completo</label>
-        <input class="form-input" id="cf_nome" value="${esc(v.nome||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Data Nasc.</label>
-        <input class="form-input" id="cf_nasc" value="${esc(v.nascimento||'')}">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">CPF</label>
-        <input class="form-input" id="cf_cpf" value="${esc(v.cpf||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">RG</label>
-        <input class="form-input" id="cf_rg" value="${esc(v.rg||'')}">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Telefone</label>
-        <input class="form-input" id="cf_tel" value="${esc(v.telefone||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">E-mail</label>
-        <input class="form-input" id="cf_email" value="${esc(v.email||'')}">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Renda</label>
-        <input class="form-input" id="cf_renda" value="${esc(v.renda||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Visto Americano</label>
-        <input class="form-input" id="cf_visto" value="${esc(v.visto||'')}">
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Endereço</label>
-      <input class="form-input" id="cf_end" value="${esc(v.endereco||'')}">
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">CEP</label>
-        <input class="form-input" id="cf_cep" value="${esc(v.cep||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">E-mail Gestão</label>
-        <input class="form-input" id="cf_emailgest" value="${esc(v.emailGestao||'')}">
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Problema?</label>
-      <input class="form-input" id="cf_prob" value="${esc(v.problema||'Não')}">
-    </div>
-    <div class="form-group"><label class="form-label">Observações</label>
-      <textarea class="form-input" id="cf_obs" rows="3">${esc(v.obs||'')}</textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeModal('clientModal')">Cancelar</button>
-      <button class="btn-primary" onclick="saveClient()">Salvar</button>
-    </div>
-  `;
-}
-function saveClient() {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const key = document.getElementById('cf_key').value.trim().toLowerCase().replace(/[^a-z0-9_]/g,'');
-  if (!key) { showToast('Chave obrigatória', true); return; }
-  if (!appData.CLIENTES) appData.CLIENTES = {};
-  appData.CLIENTES[key] = {
-    nome: document.getElementById('cf_nome').value.trim(),
-    nascimento: document.getElementById('cf_nasc').value.trim(),
-    cpf: document.getElementById('cf_cpf').value.trim(),
-    rg: document.getElementById('cf_rg').value.trim(),
-    telefone: document.getElementById('cf_tel').value.trim(),
-    email: document.getElementById('cf_email').value.trim(),
-    renda: document.getElementById('cf_renda').value.trim(),
-    visto: document.getElementById('cf_visto').value.trim(),
-    endereco: document.getElementById('cf_end').value.trim(),
-    cep: document.getElementById('cf_cep').value.trim(),
-    emailGestao: document.getElementById('cf_emailgest').value.trim(),
-    problema: document.getElementById('cf_prob').value.trim(),
-    obs: document.getElementById('cf_obs').value.trim(),
-  };
-  currentClientKey = key;
-  saveToStorage();
-  closeModal('clientModal');
-  if (isADM()) renderSidebarClients();
-  renderCurrentTab();
-  showToast('✓ Cliente salvo');
-}
-function deleteClient(key) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!confirm('Excluir cliente "' + key + '"? Esta ação não pode ser desfeita.')) return;
-  delete appData.CLIENTES[key];
-  delete appData.SALDOS[key];
-  if (currentClientKey === key) {
-    const keys = Object.keys(appData.CLIENTES || {});
-    currentClientKey = keys[0] || null;
-  }
-  saveToStorage();
-  if (isADM()) renderSidebarClients();
-  renderCurrentTab();
-  showToast('✓ Cliente excluído');
-}
-
-// ========== CRUD: SALDOS ==========
-function openNewSaldoModal(clientKey) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Novo Saldo';
-  body.innerHTML = `
-    <div class="form-group"><label class="form-label">Programa</label>
-      <input class="form-input" id="sf_prog" placeholder="ex: Livelo">
-    </div>
-    <div class="form-group"><label class="form-label">Saldo (pontos)</label>
-      <input class="form-input" type="number" id="sf_val" placeholder="0">
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeModal('genericModal')">Cancelar</button>
-      <button class="btn-primary" onclick="saveSaldo('${esc(clientKey)}', null)">Salvar</button>
-    </div>
-  `;
-  openModal('genericModal');
-}
-function openEditSaldoModal(clientKey, idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const s = ((appData.SALDOS||{})[clientKey]||[])[idx] || {};
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Editar Saldo';
-  body.innerHTML = `
-    <div class="form-group"><label class="form-label">Programa</label>
-      <input class="form-input" id="sf_prog" value="${esc(s.prog||'')}">
-    </div>
-    <div class="form-group"><label class="form-label">Saldo (pontos)</label>
-      <input class="form-input" type="number" id="sf_val" value="${s.val||''}">
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeModal('genericModal')">Cancelar</button>
-      <button class="btn-primary" onclick="saveSaldo('${esc(clientKey)}', ${idx})">Salvar</button>
-    </div>
-  `;
-  openModal('genericModal');
-}
-function saveSaldo(clientKey, idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!appData.SALDOS) appData.SALDOS = {};
-  if (!appData.SALDOS[clientKey]) appData.SALDOS[clientKey] = [];
-  const entry = {
-    prog: document.getElementById('sf_prog').value.trim(),
-    val: document.getElementById('sf_val').value ? Number(document.getElementById('sf_val').value) : null
-  };
-  if (idx === null) {
-    appData.SALDOS[clientKey].push(entry);
-  } else {
-    appData.SALDOS[clientKey][idx] = entry;
-  }
-  saveToStorage();
-  closeModal('genericModal');
-  renderCurrentTab();
-  showToast('✓ Saldo salvo');
-}
-function deleteSaldo(clientKey, idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!confirm('Excluir este saldo?')) return;
-  appData.SALDOS[clientKey].splice(idx, 1);
-  saveToStorage();
-  renderCurrentTab();
-  showToast('✓ Saldo excluído');
-}
-
-// ========== CRUD: OPERAÇÕES ==========
-function openNewOpModal() {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const body = document.getElementById('opModalBody');
-  document.getElementById('opModalTitle').textContent = 'Nova Operação';
-  body.innerHTML = buildOpForm(null);
-  openModal('opModal');
-}
-function openEditOpModal(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const o = (appData.OPS||[])[idx] || {};
-  const body = document.getElementById('opModalBody');
-  document.getElementById('opModalTitle').textContent = 'Editar Operação';
-  body.innerHTML = buildOpForm(idx, o);
-  openModal('opModal');
-}
-function buildOpForm(idx, o) {
-  const v = o || {};
-  const today = new Date().toLocaleDateString('pt-BR');
-  return `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Data</label>
-        <input class="form-input" id="of_data" value="${esc(v.data||today)}">
-      </div>
-      <div class="form-group"><label class="form-label">Por</label>
-        <input class="form-input" id="of_por" value="${esc(v.por||currentUser?.name?.split(' ')[0]||'')}">
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Operação</label>
-      <textarea class="form-input" id="of_op" rows="2">${esc(v.op||'')}</textarea>
-    </div>
-    <div class="form-group"><label class="form-label">Resultado</label>
-      <input class="form-input" id="of_res" value="${esc(v.res||'')}" placeholder="deu certo / pendente / erro">
-    </div>
-    <div class="form-group"><label class="form-label">Observações</label>
-      <textarea class="form-input" id="of_obs" rows="2">${esc(v.obs||'')}</textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeModal('opModal')">Cancelar</button>
-      <button class="btn-primary" onclick="saveOp(${idx !== null ? idx : 'null'})">Salvar</button>
-    </div>
-  `;
-}
-function saveOp(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!appData.OPS) appData.OPS = [];
-  const entry = {
-    data: document.getElementById('of_data').value.trim(),
-    op: document.getElementById('of_op').value.trim(),
-    por: document.getElementById('of_por').value.trim(),
-    res: document.getElementById('of_res').value.trim(),
-    obs: document.getElementById('of_obs').value.trim()
-  };
-  if (idx === null) { appData.OPS.push(entry); }
-  else { appData.OPS[idx] = entry; }
-  saveToStorage();
-  closeModal('opModal');
-  renderCurrentTab();
-  renderTabs();
-  showToast('✓ Operação salva');
-}
-function deleteOp(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!confirm('Excluir esta operação?')) return;
-  appData.OPS.splice(idx, 1);
-  saveToStorage();
-  renderCurrentTab();
-  renderTabs();
-  showToast('✓ Operação excluída');
-}
-
-// ========== CRUD: PROGRAMAS ==========
-function openNewProgModal() {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Novo Programa';
-  body.innerHTML = buildProgForm(null, null);
-  openModal('genericModal');
-}
-function openEditProgModal(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const p = (appData.PROGRAMAS||[])[idx] || {};
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Editar Programa';
-  body.innerHTML = buildProgForm(idx, p);
-  openModal('genericModal');
-}
-function buildProgForm(idx, p) {
-  const v = p || {};
-  return `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Programa</label>
-        <input class="form-input" id="pf_prog" value="${esc(v.prog||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Titular</label>
-        <input class="form-input" id="pf_tit" value="${esc(v.titular||'')}">
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Login</label>
-      <input class="form-input" id="pf_login" value="${esc(v.login||'')}">
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Clube</label>
-        <input class="form-input" id="pf_clube" value="${esc(v.clube||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Saldo</label>
-        <input class="form-input" type="number" id="pf_saldo" value="${v.saldo||''}">
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Dados do Clube</label>
-      <textarea class="form-input" id="pf_clubedet" rows="2">${esc(v.clube_dados||'')}</textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeModal('genericModal')">Cancelar</button>
-      <button class="btn-primary" onclick="saveProg(${idx !== null ? idx : 'null'})">Salvar</button>
-    </div>
-  `;
-}
-function saveProg(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!appData.PROGRAMAS) appData.PROGRAMAS = [];
-  const entry = {
-    prog: document.getElementById('pf_prog').value.trim(),
-    titular: document.getElementById('pf_tit').value.trim(),
-    login: document.getElementById('pf_login').value.trim(),
-    clube: document.getElementById('pf_clube').value.trim(),
-    saldo: document.getElementById('pf_saldo').value ? Number(document.getElementById('pf_saldo').value) : null,
-    clube_dados: document.getElementById('pf_clubedet').value.trim()
-  };
-  if (idx === null) { appData.PROGRAMAS.push(entry); }
-  else { appData.PROGRAMAS[idx] = entry; }
-  saveToStorage();
-  closeModal('genericModal');
-  renderCurrentTab();
-  showToast('✓ Programa salvo');
-}
-function deleteProg(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!confirm('Excluir este programa?')) return;
-  appData.PROGRAMAS.splice(idx, 1);
-  saveToStorage();
-  renderCurrentTab();
-  showToast('✓ Programa excluído');
-}
-
-// ========== CRUD: VIAGENS ==========
-function openNewViagemModal() {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Nova Viagem';
-  body.innerHTML = buildViagemForm(null, null);
-  openModal('genericModal');
-}
-function openEditViagemModal(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const v = (appData.VIAGENS||[])[idx] || {};
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Editar Viagem';
-  body.innerHTML = buildViagemForm(idx, v);
-  openModal('genericModal');
-}
-function buildViagemForm(idx, v) {
-  const d = v || {};
-  return `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Origem</label>
-        <input class="form-input" id="vf_orig" value="${esc(d.origem||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Destino</label>
-        <input class="form-input" id="vf_dest" value="${esc(d.destino||'')}">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Mês</label>
-        <input class="form-input" id="vf_mes" value="${esc(d.mes||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Pax</label>
-        <input class="form-input" type="number" id="vf_pax" value="${d.pax||''}">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Cabine</label>
-        <input class="form-input" id="vf_cab" value="${esc(d.cabine||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Hotel</label>
-        <input class="form-input" id="vf_hotel" value="${esc(d.hotel||'')}">
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Estratégia / Obs</label>
-      <textarea class="form-input" id="vf_est" rows="2">${esc(d.estrategia||'')}</textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeModal('genericModal')">Cancelar</button>
-      <button class="btn-primary" onclick="saveViagem(${idx !== null ? idx : 'null'})">Salvar</button>
-    </div>
-  `;
-}
-function saveViagem(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!appData.VIAGENS) appData.VIAGENS = [];
-  const entry = {
-    origem: document.getElementById('vf_orig').value.trim(),
-    destino: document.getElementById('vf_dest').value.trim(),
-    mes: document.getElementById('vf_mes').value.trim(),
-    pax: Number(document.getElementById('vf_pax').value)||0,
-    cabine: document.getElementById('vf_cab').value.trim(),
-    hotel: document.getElementById('vf_hotel').value.trim(),
-    estrategia: document.getElementById('vf_est').value.trim()
-  };
-  if (idx === null) { appData.VIAGENS.push(entry); }
-  else { appData.VIAGENS[idx] = entry; }
-  saveToStorage();
-  closeModal('genericModal');
-  renderCurrentTab();
-  showToast('✓ Viagem salva');
-}
-function deleteViagem(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!confirm('Excluir esta viagem?')) return;
-  appData.VIAGENS.splice(idx, 1);
-  saveToStorage();
-  renderCurrentTab();
-  showToast('✓ Viagem excluída');
-}
-
-// ========== CRUD: CARTÕES ==========
-function openNewCartaoModal() {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Novo Cartão';
-  body.innerHTML = buildCartaoForm(null, null);
-  openModal('genericModal');
-}
-function openEditCartaoModal(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  const c = (appData.CARDS||[])[idx] || {};
-  const body = document.getElementById('genericModalBody');
-  document.getElementById('genericModalTitle').textContent = 'Editar Cartão';
-  body.innerHTML = buildCartaoForm(idx, c);
-  openModal('genericModal');
-}
-function buildCartaoForm(idx, c) {
-  const v = c || {};
-  return `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Nome do Cartão</label>
-        <input class="form-input" id="ctf_nome" value="${esc(v.nome||'')}">
-      </div>
-      <div class="form-group"><label class="form-label">Titular</label>
-        <input class="form-input" id="ctf_tit" value="${esc(v.titular||'')}">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Final</label>
-        <input class="form-input" id="ctf_fin" value="${esc(v.final||'')}" maxlength="4" placeholder="4 dígitos">
-      </div>
-      <div class="form-group"><label class="form-label">Programa</label>
-        <input class="form-input" id="ctf_prog" value="${esc(v.programa||'')}">
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Anuidade</label>
-      <input class="form-input" id="ctf_anu" value="${esc(v.anuidade||'')}">
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeModal('genericModal')">Cancelar</button>
-      <button class="btn-primary" onclick="saveCartao(${idx !== null ? idx : 'null'})">Salvar</button>
-    </div>
-  `;
-}
-function saveCartao(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!appData.CARDS) appData.CARDS = [];
-  const entry = {
-    nome: document.getElementById('ctf_nome').value.trim(),
-    titular: document.getElementById('ctf_tit').value.trim(),
-    final: document.getElementById('ctf_fin').value.trim(),
-    programa: document.getElementById('ctf_prog').value.trim(),
-    anuidade: document.getElementById('ctf_anu').value.trim()
-  };
-  if (idx === null) { appData.CARDS.push(entry); }
-  else { appData.CARDS[idx] = entry; }
-  saveToStorage();
-  closeModal('genericModal');
-  renderCurrentTab();
-  showToast('✓ Cartão salvo');
-}
-function deleteCartao(idx) {
-  if (!canEdit()) { showToast('Sem permissão', true); return; }
-  if (!confirm('Excluir este cartão?')) return;
-  appData.CARDS.splice(idx, 1);
-  saveToStorage();
-  renderCurrentTab();
-  showToast('✓ Cartão excluído');
-}
-
-// ========== INICIALIZAÇÃO GLOBAL ==========
-document.addEventListener('DOMContentLoaded', () => {
-  renderRecentEmails();
-  document.getElementById('loginEmail').addEventListener('keydown', e => {
-    if (e.key === 'Enter') document.getElementById('loginPass').focus();
-  });
-  document.getElementById('loginPass').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doLogin();
-  });
-  // Fechar modais ao clicar fora
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) overlay.classList.remove('open');
-    });
-  });
-  // Responsivo: ajustar sidebar
-  window.addEventListener('resize', () => {
-    if (currentUser && isADM()) {
-      const sidebar = document.getElementById('sidebar');
-      if (window.innerWidth > 768) {
-        sidebar.classList.remove('collapsed');
-        document.getElementById('sidebarOverlay').classList.remove('show');
-      }
-    }
-  });
-});
 </script>
 </body>
 </html>
